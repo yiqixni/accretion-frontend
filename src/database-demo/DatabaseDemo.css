@@ -1,0 +1,247 @@
+.database-demo {
+    max-width: var(--max-width); 
+    text-align: center; /* this is essential to place svg in the center*/
+    /* margin-bottom: 10svh; */
+    /* border: solid black; */
+    min-height: 70vh;
+    margin: auto;
+}
+
+.database-demo .row {
+    display: flex; 
+    margin: auto;    
+}
+
+.database-demo .column1 {
+    flex: 1;    
+}
+
+.database-demo .column2 {
+    flex: 2;             
+}
+
+.database-demo #title {
+    flex: 1; 
+    font-size: 40pt;        
+}
+
+.database-demo #small-title {
+    flex: 1;    
+    font-size: 10pt;    
+    margin-bottom: 2svh;
+}
+
+.database-demo .text {
+    font-size: 16pt; 
+    font-weight: bold;
+    text-align: left;  
+    font-family: monospace; 
+    /* font-family: arial; */
+    margin: auto;
+    margin-bottom: 3svh;
+}
+
+.database-demo #button-show-demo {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: lightgreen; 
+    color: black; 
+    border: solid gray;
+    border-radius: 10pt; 
+    width: 300pt;
+}
+.database-demo #button-show-demo:hover {
+    background-color: rgb(128, 233, 128); 
+    color: black; 
+    border: solid black;
+    border-radius: 20pt; 
+}
+
+/* section for google map auto complete */
+
+.database-demo .map-autocomp-row {
+    display: flex; 
+    flex-direction: row;
+    max-width: var(--max-width);     
+}
+
+.database-demo #map-autocomp-col {
+    flex: 1;
+    padding: 1%;    
+}
+
+.database-demo .search-bar {   
+    /* flex: 1;  */
+    /* box-sizing: border-box; */
+    border: 1px solid transparent;
+    width: 100%;
+    height: 50px;
+    /* width: ; */
+    padding: auto;    
+    border-radius: 10pt;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 20px;
+    text-align: left;
+    outline: none;
+    text-overflow: ellipses;
+    margin: auto;
+}
+
+.database-demo #search-button, #search-button-mobile {    
+    background-color: var(--button-color);
+    color: black; 
+    border: solid black;
+    border-radius: var(--button-border-radius);
+}
+
+#search-button:hover {    
+    border-radius: var(--button-border-radius-hover);
+}
+
+.database-demo .results {
+    flex: 1;
+}
+
+.database-demo .message-in-progress {
+    flex: 1;
+}
+
+.visualization-row {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap; /* Prevents block items from wrapping to the next line */    
+    margin-bottom: 10%;
+}
+
+.visualization-block {    
+    margin-right: 10px; /* Add margin between blocks */
+    border: 1px solid #ccc; /* Optional: Add border for visual separation */
+    padding: 10px; /* Optional: Add padding for block content */
+    border-radius: 10pt;
+    font-size: 1pt;
+    word-wrap: break-word;
+    width: 200px; /* Set a fixed width for each block */
+    max-width: 100%; /* Set the maximum width of the block */
+    margin-right: 10px; /* Add margin between blocks */
+    border: 1px solid #ccc; /* Optional: Add border for visual separation */
+    padding: 10px; /* Optional: Add padding for block content */
+    word-wrap: break-word; /* Allow long words to wrap to the next line */
+}
+
+.visualization-block .p {
+    font-size: 10pt;
+}
+
+/* DemoDell */
+.demo-dell {    
+    place-content: center;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.demo-dell .text {
+    max-width: 100%;
+    margin-bottom: 2%;
+    font-size: 20pt; 
+}
+
+.demo-dell .deed-record {
+    
+    min-width: 80%;
+}
+
+
+/* Section for d3-demo */
+rect:hover{
+    cursor: pointer;     
+}
+
+.deed-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: none;
+}
+
+.deed-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    padding: 20px; /* Adjust padding as needed */
+}
+
+/* JSON overview */
+.database-demo .json-view {
+    text-align: left;     
+    font-family: monospace;
+    max-height: 1vh;
+    /* font-size: 5pt;     */
+}
+
+/* button appearance */
+/* modify the button color */
+#button-database-demo {
+    /* flex: 1;  */
+    background-color: var(--button-color);
+    color: black; 
+    border: solid;
+    border-radius: var(--button-border-radius);
+}
+
+/* modify the button hover over color */
+#button-database-demo:hover {
+    border-radius: var(--button-border-radius-hover);
+}
+
+/* change the autocomplete suggestion font size */
+.pac-container {
+    font-size: 4px !important; /* Adjust the font size as needed */
+}
+
+/* optimize webpage for mobile */
+@media (max-width: 768px) {   
+    .database-demo #title {
+        font-size: 20pt;
+    }
+    .row {
+        flex-direction: column;           
+    }    
+    .row .text {
+        font-size: 12pt;
+    }    
+    .row #small-title {
+        font-size: 10pt;
+    }
+    .row .column .row {
+        flex-direction: row;
+    }
+
+    .row .column {
+        font-size: 12pt;                 
+    }
+    .row .column #title {
+        font-size: 18pt;
+    }
+    #button-database {
+        font-size: 13.5pt;
+    }
+    .database-demo .search-bar {
+        font-size: 10pt;
+    }
+    .database-demo #search-button {
+        font-size: 10pt;
+        display: none;
+        flex: 1;
+        max-width: 5%;
+    }
+}
+
+@media (min-width: 769px) {
+    .database-demo #search-button-mobile {
+        display: none;
+    }
+}

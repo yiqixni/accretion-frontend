@@ -1,0 +1,41 @@
+
+.marketplace-demo {
+    height: 100svh;
+    background-color: gray;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    margin-top: 10svh;
+    color: white;
+}
+
+.demo-app {
+    margin: auto;
+    margin-top: 10px;
+    max-width: var(--max-width);
+    min-height: 80svh;
+    border: solid white; 
+    border-radius: 25px;
+    border-width: 2px;
+}
+
+.demo-app .row, .demo-app .column {
+    color: white;
+    text-align: center;
+}
+
+.demo-app #demo-graph {
+    flex: 4;
+    min-height: 80svh;
+}
+
+.demo-app #demo-menu {
+    flex: 1;
+    min-height: 80%;
+    margin-top: 0;
+}
+
+/* DEV MODE */
+.demo-app .row, .demo-app .column {
+    border: solid white;
+}

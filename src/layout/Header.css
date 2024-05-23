@@ -1,0 +1,193 @@
+* {
+    font-family: Arial;
+    font-size: 20px;
+    color: black; 
+    text-decoration: none;
+}
+
+.header {
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 4%
+}
+
+.logo-section, .menu-section, .contact-section, .show-menu-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.show-menu-section {
+    max-width: 10%;
+}
+
+.logo-section {
+    margin-right: 4%;
+}
+
+.logo-section #header_logo {
+    /* width: auto;  */
+    /* height: auto; */
+    max-width: 200px; 
+    min-width: 20vw;    
+    /* padding-right: 2%; */
+}
+
+
+
+.menu-container-mobile #bottom-button {
+    /* flex: 1; */
+    align-self: flex-end;
+}
+
+
+/*remove the dropdown button arrow*/
+.dropdown-toggle::after {
+    display: none; 
+}
+
+/* modify the button color */
+#dropdown-basic {
+    background-color: none;
+    color: black; 
+    border: 0;
+    border-radius: 15px;
+}
+
+/* modify the button hover over color */
+#dropdown-basic:hover {
+    background-color: white;
+    border: solid black;
+}
+
+/* modify the Link behavior */
+.header a {
+    text-decoration: none;
+    color: black
+}
+
+#button-contact-us {
+    /* background-color: rgb(167, 223, 56); */
+    background-color: var(--button-color);
+    color: black; 
+    border: solid black;
+    border-radius: var(--button-border-radius);
+}
+
+#button-contact-us:hover {    
+    border-radius: var(--button-border-radius-hover);
+}
+
+/* Optimize for mobile */
+@media (max-width: 768px) {
+    .menu-section {
+        display: none; /* Hide menu by default on smaller screens */
+    } 
+    
+    #button-contact-us {                            
+        font-size: 10pt;
+    }   
+}
+
+/* hide the show menu button  */
+@media (min-width: 769px) {
+    .show-menu-section {
+        display: none;
+    }
+}
+
+/* .overlay {    
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 80px;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: white; 
+    z-index: 999; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-in-out;
+    border: solid black;
+} */
+
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%); /* Start slightly above its final position */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0); /* Move to its final position */
+    }
+}
+
+.menu-container-mobile, 
+.menu-container-mobile-whitespace, 
+.menu-container-mobile-contact 
+.menu-container-mobile-line {    
+    display: flex; 
+    flex-direction: row;
+    border: solid black;    
+    /* border: none; */
+    border-width: 1.5pt;;
+    padding: 4%;
+    padding-left: 20%;
+    border-radius: 20pt;
+    text-align: left;        
+}
+
+.menu-container-mobile-whitespace {
+    border: solid black; 
+}
+
+.menu-container-mobile-contact {
+    background-color: lightgreen;
+}
+
+.menu-container-mobile-line {
+    padding: 0;
+}
+
+.line {    
+    top: 0%; /* Position the line vertically in the middle of the container */
+    left: 0;
+    width: 100%; /* Full width of the container */
+    height: 2px; /* Height of the line */
+    background-color: gray; /* Color of the line */
+    transform: translateY(-50%); /* Adjust vertical position to center the line */        
+}
+
+.overlay {    
+    display: flex;
+    flex-direction: column;            
+    position: fixed;
+    top: 80px;
+    left: 0%;
+    width: 100%;
+    height: 80%;
+    background-color: white; /* semi-transparent black */
+    z-index: 999; /* Ensure the overlay is on top of other content */    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.overlay .row-overlay {
+    flex: 1;
+    border: solid black; 
+    margin: 0; 
+    /* margin-left: 0; */
+    /* margin-right: 0; */
+    /* padding: 2%;     */
+    /* min-height: 10%; */
+}
+
+.overlay .row-overlay .option {
+    /* border: solid black;     */
+    padding: 10%; 
+    /* margin: auto; */
+    max-height: 10svh;
+}

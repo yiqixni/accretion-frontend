@@ -1,0 +1,116 @@
+.database {
+    max-width: var(--max-width); 
+    margin: auto;
+}
+
+.database .row {
+    display: flex;
+    margin: auto;
+    margin-bottom: 6svh;
+}
+
+.database .row .column .row {
+    margin-bottom: 0;
+}
+
+.database .small-title {
+    text-align: center;
+    font-size: 10pt;
+    flex: 1;    
+}
+
+.database .headline-title {
+    flex: 1;
+    text-align: center;
+    font-size: 40pt; 
+    font-family: monospace;
+    margin: auto; 
+    margin-left: 10px; 
+    margin-right: 10px; 
+}
+
+.database .headline-title #highlight {
+    color: #023d29;
+    font-size: 40pt;
+    font-family: monospace;
+    font-weight: 900;
+}
+
+
+.row .column {    
+    flex: 1; 
+    flex-direction: row;
+    font-size: 15pt;
+    margin: auto;
+}
+
+.row .column #pic, #pic-mobile {
+    place-items: center;    
+    max-width: 100%;
+    max-height: auto;
+}
+
+#pic-mobile {
+    padding: 5%;
+}
+
+.row .column #title {
+    font-size: 28pt;
+}
+
+/* modify the button color */
+#button-database {
+    /* flex: 1;  */
+    background-color: var(--button-color);
+    color: black; 
+    border: solid;
+    border-radius: var(--button-border-radius);
+}
+
+/* modify the button hover over color */
+#button-database:hover {
+    border-radius: var(--button-border-radius-hover);
+}
+
+#statement-animation {
+    border-radius: 15px;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgba(128, 128, 128, 0.08);
+    text-align: center;
+    font-weight: bolder;
+  }
+
+/* optimize webpage for mobile */
+@media (max-width: 768px) {
+    #pic {
+        display: none; 
+    }    
+    .row {
+        flex-direction: column;   
+    }        
+    .row .column .row {
+        flex-direction: row;
+    }
+    .database .headline-title, .database .headline-title #highlight {
+        font-size: 20pt;
+    }
+    .row .column {
+        font-size: 12pt;                 
+    }
+    .row .column #title {
+        font-size: 18pt;
+    }
+    #button-database {
+        font-size: 13.5pt;
+    }
+}
+
+/* optimize webpage for desktop  */
+@media (min-width: 769px) {
+    #pic-mobile {
+        display: none;         
+    }
+}

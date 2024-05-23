@@ -1,0 +1,101 @@
+* {
+    font-family: Arial;
+    font-size: 20px;
+    color: black; 
+    text-decoration: none;
+}
+
+.header {
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 2%
+}
+
+.menu_container {
+    flex: 1;
+    display: flex;
+    padding: 5%;
+    min-width: 10vw;
+}
+
+.left-section, .right-section, .menu-section  {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-section {
+    flex: 1;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.logo-section .header_logo {
+    width: auto; 
+    height: auto;
+    max-width: 200px; 
+    min-width: 20vw;    
+}
+
+
+.submenu {
+    display: flex;
+}
+
+/*remove the dropdown button arrow*/
+.dropdown-toggle::after {
+    display: none; 
+}
+
+/* modify the button color */
+#dropdown-basic {
+    background-color: none;
+    color: black; 
+    border: 0;
+    border-radius: 15px;
+}
+
+/* modify the button hover over color */
+#dropdown-basic:hover {
+    background-color: gray;
+}
+
+/* modify the Link behavior */
+.header a {
+    text-decoration: none;
+    color: black
+}
+
+#button-contact-us {
+    background-color: rgb(167, 223, 56);
+    color: black; 
+    border: solid black;
+    border-radius: 15px;
+}
+
+#button-contact-us:hover {
+    background-color: greenyellow;
+    border-radius: 30px;
+}
+
+/* Add this to your Header.css file */
+@media (max-width: 768px) {
+    .left-section {
+        display: none; /* Hide menu by default on smaller screens */
+    }
+    .left-section.show {
+        display: flex; /* Show menu when menuOpen state is true */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust as per your design */
+        left: 0;
+        background-color: #fff; /* Background color for menu */
+        padding: 10px;
+        border: 1px solid #ccc;
+        z-index: 1000;
+    }
+    .menu_container {
+        margin-bottom: 10px;
+    }
+}

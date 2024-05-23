@@ -1,0 +1,65 @@
+.contact-us {
+    text-align: left;
+    margin-bottom: 10svh;
+}
+
+.contact-us .row #text {    
+    max-width: 500px; 
+    margin: auto;  
+    margin-bottom: 5%;      
+}
+ 
+.contact-us .row .line-item {
+    flex: 1; 
+    border: solid; 
+    border-radius: 15pt;
+    background-color: beige;
+    margin: auto;
+    margin-bottom: 2svh;
+    max-width: 400px;
+    font-size: 17pt;
+    text-align: center;
+}
+
+/* style for MessageUsComponent Formspree */ 
+.contact-us .formspree .row {
+    max-width: 600px;
+}
+
+.contact-us .form-label {
+    flex: 1; 
+    margin: auto;
+    text-align: center;
+}
+
+.contact-us .form-input {
+    flex: 3;
+    margin: auto; 
+    border-radius: 20px;
+    border: solid black;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-bottom: 2svh;
+}
+
+.contact-us #message {
+    min-height: 200px;
+    text-align: left; 
+}
+
+.contact-us #button-form-submit {
+    background-color: var(--button-color);
+    border: solid black;
+    color: black;
+    border-radius: var(--button-border-radius);
+}
+
+.contact-us #button-form-submit:hover {
+    border-radius: var(--button-border-radius-hover);
+}
+/* dev mode */
+/* .form-input, .form-label {
+    border: solid black; 
+} */

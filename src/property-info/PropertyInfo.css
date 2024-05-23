@@ -1,0 +1,44 @@
+.three-column-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+    margin: 10%;
+}
+
+.three-column-container .images {
+    flex: 4;
+    border: solid black;
+    padding: 2%;
+}
+
+.images .image-lead {
+    max-width: 100%;
+    /* align-items: flex-start; */
+}
+
+.three-column-container .buy-sell-tab {
+    flex: 1; 
+    border: solid black;
+    padding: 10%;
+}
+
+.three-column-container .property-details {
+    flex: 4;
+    border: solid black;
+    padding: 10%;
+}
+
+.three-column-container .price-chart {
+    flex: 4;
+    border: solid black;
+    padding: 10%;
+}
+
+.three-column-container .bid-ask-chart {
+    flex: 1;
+    border: solid black;
+    padding: 10%;
+}

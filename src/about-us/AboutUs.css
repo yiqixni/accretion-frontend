@@ -1,0 +1,45 @@
+.about-us {
+    text-align: left;
+    margin-bottom: 8svh 
+} 
+   
+.about-us .row .column-left, .column-right {        
+    flex: 1;        
+    border-radius: 0;    
+    text-align: center;
+    margin: auto;       
+    /* border: solid black;      */
+}
+
+.about-us .row #headline {
+    font-size: 30pt;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 5%;
+}
+    
+  /* optimize webpage for mobile */
+@media (max-width: 768px) {
+    #desktop {
+        display: none;
+    }     
+    .about-us .row .column-left, .column-right {    
+      margin-left: 0%;
+      margin-right: 0%;        
+    }
+    .about-us .row #headline {
+      font-size: 18pt;
+    }
+
+    #animation {
+      max-width: 500px;
+      margin: auto;
+      margin-bottom: 4svh;
+    }
+}
+
+@media (min-width: 769px) {
+    #mobile {
+        display: none;
+    }
+}

@@ -1,0 +1,125 @@
+
+.home {
+  text-align: center;
+}
+
+.home .segment {
+  margin: auto;
+  margin-bottom: 10svh;
+  text-align: center;
+  max-width: 1200px;  
+}
+
+.home .row {
+  display: flex; 
+  flex-wrap: wrap; 
+  flex-direction: row;   
+  margin: auto;  
+  max-width: 1200px;  
+}
+
+.home #small-title {
+  font-size: 10pt;
+  opacity: 50%;
+  margin: 1svh auto;
+}
+
+.home .row .column, .column-2 {
+  margin: auto; 
+}
+
+.home .row .column {
+  flex: 1;
+}
+
+.home .row .column-2 {  
+  flex: 1.5;  
+}
+
+.home .row .column #logo {
+  place-items: center;
+  max-width: 300px;
+  max-height: 400px;
+}
+
+.mission-statement-animation {
+  border: solid;
+  border-radius: 15px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: beige;
+}
+
+#mission-statement-title-database {
+  text-align: left;
+  font-size: 30pt;
+  padding-left: 10%;
+  font-family: monospace;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+
+#mission-statement-title-marketplace {
+  text-align: left;
+  font-size: 30pt;
+  padding-left: 10%;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+
+#mission-statement-text {
+  text-align: left;
+  font-size: 20pt;
+  padding-left: 10%;
+  margin-top: 3%;
+}
+
+#mission-statement-text-highlight {
+  text-align: left;
+  font-size: 20pt;
+  padding-left: 10%;
+  font-weight: bold;
+}
+
+/* modify the button color */
+.home #button-home {  
+  background-color: var(--button-color);  
+  color: black; 
+  border: solid;
+  border-radius: var(--button-border-radius);  
+  margin: auto;     
+}
+
+/* modify the button hover over color */
+#button-home:hover {  
+  border-radius: var(--button-border-radius-hover);
+}
+
+/* optimize webpage for mobile */
+@media (max-width: 768px) {
+  .home .row {        
+    flex-direction: column;     
+  }
+
+  .home .row #button {
+    flex-direction: row;
+  }
+
+  #mission-statement-title-database, 
+  #mission-statement-title-marketplace {
+    font-size: 20pt;
+  }
+  #mission-statement-text {
+    font-size: 15pt;
+  }
+  #mission-statement-text-highlight {
+    font-size: 15pt;
+  }
+  .home .row .column #logo {
+    place-items: center;
+    max-width: auto;
+    max-height: 150px;
+    margin-top: 2svh;
+  }
+}

@@ -1,0 +1,13 @@
+.not-found {
+    text-align: center;
+    display: flex;
+}
+
+.not-found .container {
+    flex: 1; 
+    /* font-size: 40pt; */
+}
+
+.not-found #title {
+    font-size: 40pt;
+}

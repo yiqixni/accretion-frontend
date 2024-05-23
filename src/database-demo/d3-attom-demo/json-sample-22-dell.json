@@ -1,0 +1,265 @@
+{
+	"status": {
+		"version": "1.0.0",
+		"code": 0,
+		"msg": "SuccessWithResult",
+		"total": 1,
+		"page": 1,
+		"pagesize": 10,
+		"transactionID": "8c6c62d31f9ead691c8fcc0ae823c86c",
+		"attomId": 193394363
+	},
+	"property": [
+		{
+			"identifier": {
+				"Id": 193394363,
+				"fips": "25017",
+				"apn": "SOME M:93 B:A L:1",
+				"attomId": 193394363
+			},
+			"area": {
+				"countrySecSubd": "Middlesex"
+			},
+			"address": {
+				"country": "US",
+				"countrySubd": "MA",
+				"line1": "22 DELL ST",
+				"line2": "SOMERVILLE, MA 02145",
+				"locality": "SOMERVILLE",
+				"matchCode": "ExaStr",
+				"oneLine": "22 DELL ST, SOMERVILLE, MA 02145",
+				"postal1": "02145",
+				"postal2": "4122",
+				"postal3": "C100"
+			},
+			"location": {
+				"accuracy": "Rooftop",
+				"latitude": "42.382983",
+				"longitude": "-71.088946",
+				"distance": 0.0,
+				"geoid": "CO25017, CS2562535, DB2510890, ND0000018356, PL2562535, ZI02145",
+				"geoIdV4": {
+					"CO": "80dcf5292673ede9a0b6212d95b80f8f",
+					"CS": "2521fc7ee2e392365fdecd1a68938404",
+					"DB": "18dff5b394fb37ed2a23d699d4f3ae1c",
+					"N2": "afe40eab93195d1904b93cf484c228a9",
+					"PL": "605e34a7a1eec172b03f9bd5ca1d91c8",
+					"SB": "6776be2b1698040611c3ae8582832257, a67b5e6621c100813f3b501a11ca799d, a57081d71f837e29d45dd803ba6e05cc, 75d6a8863d2c2bc10b92a3cb9c0ae831, f3687e87a6778d1efbe092061dd82635, f91db878750196db3795a2cb6888d4da, e7001e40a0beb7bf89ece2d32072675f, c6e8facb48b080422037251de7f2db13, 246e33e5e6b9b2b62f201060446fa5bc",
+					"ZI": "9da65d16b58292014e29feece175b285"
+				}
+			},
+			"salehistory": [
+				{
+					"sequence": 1,
+					"saleSearchDate": "2022-03-22",
+					"saleTransDate": "2022-03-22",
+					"transactionIdent": 986630823,
+					"buyerName": "YIQI NI,",
+					"amount": {
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"trustDeedDocumentNumber": "079859-460",
+							"amount": 516000.0,
+							"lenderLastName": "MEMBERS MORTGAGE COMPANY INC"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2023-01-13"
+					}
+				},
+				{
+					"sequence": 2,
+					"saleSearchDate": "2021-12-03",
+					"saleTransDate": "2021-11-18",
+					"transactionIdent": 978474068,
+					"buyerName": "YIQI NI,",
+					"sellerName": "ALAN R BALL",
+					"amount": {
+						"saleAmt": 620000,
+						"saleCode": "SALE PRICE (FULL) Full sales price as per documents",
+						"saleRecDate": "2021-12-03",
+						"saleDisclosureType": 0,
+						"saleDocNum": "079280-456",
+						"saleTransType": "Resale"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"amount": 0.0
+						},
+						"SecondConcurrent": {
+							"amount": 0.0
+						}
+					},
+					"vintage": {
+						"lastModified": "2022-01-05"
+					}
+				},
+				{
+					"sequence": 3,
+					"saleSearchDate": "2013-03-19",
+					"saleTransDate": "2013-03-19",
+					"transactionIdent": 645483842,
+					"buyerName": "ALAN R BALL,",
+					"amount": {
+						"saleRecDate": "2013-03-19",
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleDocNum": "61424-38",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"trustDeedDocumentNumber": "61424-38",
+							"amount": 150000.0,
+							"lenderLastName": "WINTER HILL FSB"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2018-12-01"
+					}
+				},
+				{
+					"sequence": 4,
+					"saleSearchDate": "2003-01-22",
+					"saleTransDate": "2003-01-22",
+					"transactionIdent": 642911285,
+					"buyerName": "ALAN R BALL,",
+					"amount": {
+						"saleRecDate": "2003-01-22",
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"trustDeedDocumentNumber": "914",
+							"amount": 110000.0,
+							"lenderLastName": "WINTER HILL FSB"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2022-11-11"
+					}
+				},
+				{
+					"sequence": 5,
+					"saleSearchDate": "2001-07-09",
+					"saleTransDate": "2001-07-09",
+					"transactionIdent": 642020851,
+					"buyerName": "ALAN R BALL,",
+					"amount": {
+						"saleRecDate": "2001-07-09",
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"amount": 42000.0,
+							"lenderLastName": "WINTER HILL FSB"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2018-06-06"
+					}
+				},
+				{
+					"sequence": 6,
+					"saleSearchDate": "1998-07-15",
+					"saleTransDate": "1998-07-15",
+					"transactionIdent": 642023615,
+					"buyerName": "ALAN R BALL,",
+					"amount": {
+						"saleRecDate": "1998-07-15",
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"amount": 84000.0,
+							"lenderLastName": "WINTER HILL FSB"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2018-06-06"
+					}
+				},
+				{
+					"sequence": 7,
+					"saleSearchDate": "1989-12-27",
+					"saleTransDate": "1989-12-27",
+					"transactionIdent": 642033048,
+					"buyerName": "ALAN R BALL,",
+					"amount": {
+						"saleRecDate": "1989-12-27",
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"amount": 12000.0,
+							"lenderLastName": "HARVARD UNIVERSITY CU"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2018-06-06"
+					}
+				},
+				{
+					"sequence": 8,
+					"saleSearchDate": "1987-02-19",
+					"saleTransDate": "1987-02-19",
+					"transactionIdent": 642034356,
+					"buyerName": "ALAN R BALL,",
+					"amount": {
+						"saleRecDate": "1987-02-19",
+						"saleDisclosureType": 0,
+						"saleDocType": "MORTGAGE",
+						"saleTransType": "Stand Alone Finance"
+					},
+					"mortgage": {
+						"FirstConcurrent": {
+							"amount": 73000.0,
+							"lenderLastName": "FARRAGUT MTG CO"
+						},
+						"SecondConcurrent": {}
+					},
+					"vintage": {
+						"lastModified": "2018-06-06"
+					}
+				}
+			],
+			"owner": {
+				"corporateIndicator": "N",
+				"type": "INDIVIDUAL",
+				"description": "INDIVIDUAL",
+				"owner1": {
+					"fullName": "YIQI NI",
+					"lastName": "NI ",
+					"firstNameAndMi": "YIQI "
+				},
+				"owner2": {},
+				"owner3": {},
+				"owner4": {},
+				"absenteeOwnerStatus": "O",
+				"mailingAddressOneline": "22 DELL ST, SOMERVILLE, MA 02145-4122"
+			},
+			"vintage": {
+				"lastModified": "2018-06-06",
+				"pubDate": "2018-06-06"
+			}
+		}
+	]
+}

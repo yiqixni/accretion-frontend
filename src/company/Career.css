@@ -1,0 +1,44 @@
+/* below is for Career CSS styling */
+.career {
+    text-align: left;
+    margin-bottom: 10svh;
+}    
+
+.career .row #slogan {
+    /* flex: 1;  */
+    font-size: 30pt;
+    font-weight: bolder;
+    font-family: monospace;
+    margin-left: 10%;
+    margin-right: 2%;
+    color: rgb(18, 95, 18);
+  }
+  
+
+.career #animation {
+    max-width: 50%;    
+    margin: auto;
+  }
+  
+.career .row .column #contact-yiqi {
+    flex: 1; 
+    border: solid; 
+    border-radius: 15pt;
+    background-color: beige;
+    margin-top: 2%; 
+    margin-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+  /* optimize webpage for mobile */
+  @media (max-width: 768px) {
+    
+    .career .column #slogan {
+        font-size: 30pt;
+    }
+}
+
+@media (min-width: 769px) {
+
+}  
