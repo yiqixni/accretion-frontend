@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import MapAutocomplete from './MapAutocomplete.js'; 
-import DatabaseFetch from './DatabaseFetch.js';
+import DatabaseFetchAccretionDB from './DatabaseFetchAccretionDB.js';
 import DatabaseFetchAttom from './DatabaseFetchAttom.js';
 // import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js';
-// import DatabaseVisualization from './DatabaseVisualization.js';
-// import DemoDellSt from './DemoDellSt.js';
-// import CreateDeedVisual from './d3-demo/CreateDeedVisual.js';
-import CreateDeedVisualAttom from './d3-attom-demo/CreateVisualAttom.js';
-// import Button from 'react-bootstrap/Button';
+
 import ContactUs from '../contact-us/ContactUs.js';
 
 
@@ -47,7 +43,7 @@ export default function DatabaseDemo () {
             {addressInfo && (                   
                 <div>                     
                     <div className='row' style={{marginBottom:"8svh"}}>
-                        <DatabaseFetchAttom addressInfo={addressInfo} setFetchStatus={updateFetchStatus} />                        
+                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} />                        
                     </div>                                       
                     {fetchStatus ? (
                         <div className='row'> 

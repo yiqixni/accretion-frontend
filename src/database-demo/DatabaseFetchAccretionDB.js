@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import CreateDeedVisualAttomAPI from "./d3-attom-demo/CreateVisualAttomAPI";
 
 const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
+const url_accretionDB = "http://127.0.0.1:8000/api/database-visualization/";
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
     
@@ -13,14 +14,11 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
         }                
         try {
             const response = await fetch(
-                "https://api.gateway.attomdata.com/propertyapi/v1.0.0/saleshistory/basichistory" + 
+                url_accretionDB + 
                 `?address1=${addressInfo.street_number}%20${addressInfo.route}%20${addressInfo.unit}` + 
                 `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`,
                 {
                     method: "GET",                 
-                    headers: {       
-                        apikey: API_key_Attoms         
-                    },
                 }
             );
     
