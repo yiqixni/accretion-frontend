@@ -1,14 +1,18 @@
 import React, {useState, useEffect} from "react";  
-import CreateDeedVisualAttomAPI from "./d3-attom-demo/CreateVisualAttomAPI";
+// import CreateDeedVisualAttomAPI from "./d3-attom-demo/CreateVisualAttomAPI";
+import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB";
+import { Button } from "react-bootstrap";
 
-const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
+// const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
 const url_accretionDB = "http://127.0.0.1:8000/api/database-visualization/";
+const url_accretionDB_share = "http://127.0.0.1:8000/api/database-visualization-share/";
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
     
     const [dataATTOM, setDataATTOM] = useState(null); 
+    const [dataPNG, setDataPNG] = useState(null); 
         
-    const submitHandler = async (event) => {
+    const submitHandler = async (event) => { //API call to get data from accretion-backend
         if (event) {
             event.preventDefault();
         }                
@@ -35,7 +39,11 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
             console.log("Error during fetch: ", error);            
             setFetchStatus(false);            
         }
-    }            
+    } 
+
+    const shareHandler = async (event) => { //API call to get data from accretion-backend
+
+    } 
     
     // trigger submitHandler when the addressInfo change 
     useEffect( () => {
@@ -45,8 +53,25 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
     return (
         <div className="row">             
             {dataATTOM != null && (
-                <CreateDeedVisualAttomAPI dataJson={dataATTOM} visualWidth={600}/>                
-            )}                                    
+                <div> 
+                    <div> 
+                        <CreateDeedVisualAccretionDB dataJson={dataATTOM} setDataPNG={setDataPNG}/> 
+                    </div>
+                    <div className="row" style={{textAlign:"center"}}>
+                        <Button 
+                            variant='outline-primary' 
+                            id='button-share'
+                            style={{maxWidth:"600px", margin:"auto"}}
+                            // onClick={{shareHandler}} 
+                        >
+                            Share
+                        </Button> 
+                    </div>
+                </div>
+            )} 
+            {dataPNG != null && (
+                <img src={dataPNG}/>
+            )}
         </div>
     )
 };

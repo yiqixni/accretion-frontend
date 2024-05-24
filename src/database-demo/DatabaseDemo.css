@@ -87,14 +87,14 @@
     margin: auto;
 }
 
-.database-demo #search-button, #search-button-mobile {    
+.database-demo #search-button, #search-button-mobile, #button-share {    
     background-color: var(--button-color);
     color: black; 
     border: solid black;
     border-radius: var(--button-border-radius);
 }
 
-#search-button:hover {    
+#search-button:hover, #button-share:hover {    
     border-radius: var(--button-border-radius-hover);
 }
 
@@ -197,10 +197,7 @@ rect:hover{
     border-radius: var(--button-border-radius-hover);
 }
 
-/* change the autocomplete suggestion font size */
-.pac-container {
-    font-size: 4px !important; /* Adjust the font size as needed */
-}
+
 
 /* optimize webpage for mobile */
 @media (max-width: 768px) {   

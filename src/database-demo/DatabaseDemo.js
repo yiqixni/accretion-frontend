@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import MapAutocomplete from './MapAutocomplete.js'; 
-import DatabaseFetchAccretionDB from './DatabaseFetchAccretionDB.js';
-import DatabaseFetchAttom from './DatabaseFetchAttom.js';
-// import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js';
+import DatabaseFetchAccretionDB from './DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
+// import DatabaseFetchAttom from './DatabaseFetchAttom.js'; //direct fetch data from attom 
+// import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
 import ContactUs from '../contact-us/ContactUs.js';
-
 
 export default function DatabaseDemo () {
 

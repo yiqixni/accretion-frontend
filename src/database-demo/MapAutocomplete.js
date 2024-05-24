@@ -113,15 +113,16 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
             >
               <input
                 type="text"
-                placeholder="  Enter Address" 
-                className='search-bar'                                 
+                placeholder="Enter Address" 
+                className='search-bar'      
+                style={{paddingLeft:"10px"}}                           
               />
             </StandaloneSearchBox>
           </div>
           <div id='map-autocomp-col' style={{flex:"1.5"}}>
             <input 
               type='text' 
-              placeholder='  Unit'
+              placeholder='Unit'
               className='search-bar'   
               value={unit}
               onChange={(e) => {
@@ -129,6 +130,7 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
                 setUnit(e.target.value);
               }} 
               onKeyDown={handleKeyStroke}
+              style={{paddingLeft:"10px"}}    
             />   
           </div>  
           <div id='map-autocomp-col' style={{flex:"0.5"}}>
