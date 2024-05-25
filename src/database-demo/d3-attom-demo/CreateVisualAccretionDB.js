@@ -6,6 +6,7 @@ import '../DatabaseDemo.css'
 
 const CreateDeedVisualAccretionDB = ({dataJson, setDataPNG}) => {                
     const dataATTOM = dataJson.property[0].salehistory;    
+    const dataAddress = dataJson.property[0].address.oneLine;
     const svgRef = useRef(); // ref for the svg graph 
     const tooltipRef = useRef(null); // Ref for the tooltip
     
@@ -325,7 +326,7 @@ const CreateDeedVisualAccretionDB = ({dataJson, setDataPNG}) => {
             }
         }
 
-        ConvertSVG2PNG(svgRef.current, setDataPNG);
+        ConvertSVG2PNG(svgRef.current, setDataPNG, dataAddress);
         
     }, [dataJson]);
 

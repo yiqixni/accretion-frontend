@@ -44,7 +44,7 @@ export default function DatabaseDemo () {
                     <div className='row' style={{marginBottom:"8svh"}}>
                         <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} />                        
                     </div>                                       
-                    {fetchStatus ? (
+                    {fetchStatus == true ? (
                         <div className='row'> 
                             <div className='text'> 
                                 We are in the process building the best database for deeds and titles.

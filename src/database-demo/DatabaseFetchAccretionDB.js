@@ -28,6 +28,7 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
     
             if (response.ok) {
                 const data = await response.json();     
+                console.log("=== response data ===", data)
                 setFetchStatus(true);
                 setDataATTOM(data); 
             } else {
@@ -41,14 +42,19 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
         }
     } 
 
-    const shareHandler = async (event) => { //API call to get data from accretion-backend
-
+    const uploadPNGHandler = async (event) => { //API call to get data from accretion-backend
+        console.log("===uploadPNGHandler triggered===");
     } 
     
     // trigger submitHandler when the addressInfo change 
     useEffect( () => {
         submitHandler();
     }, [addressInfo])
+
+    // trigger uploadPNGhandler when dataPNG is updated 
+    useEffect( () => {
+        uploadPNGHandler()
+    }, [dataPNG])
 
     return (
         <div className="row">             
