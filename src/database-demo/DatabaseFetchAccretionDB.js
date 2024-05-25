@@ -4,21 +4,22 @@ import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB
 import { Button } from "react-bootstrap";
 
 // const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
-const url_accretionDB = "http://127.0.0.1:8000/api/database-visualization/";
-const url_accretionDB_share = "http://127.0.0.1:8000/api/database-visualization-share/";
+const url_accretionDB_getData = "http://127.0.0.1:8000/api/database-visualization/get-data/";
+const url_accretionDB_postPNG = "http://127.0.0.1:8000/api/database-visualization/post-png/";
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
     
     const [dataATTOM, setDataATTOM] = useState(null); 
     const [dataPNG, setDataPNG] = useState(null); 
-        
-    const submitHandler = async (event) => { //API call to get data from accretion-backend
+    const [propertyID, setPropertyID] = useState(null);         
+
+    const getDataHandler = async (event) => { //API call to get data from accretion-backend
         if (event) {
             event.preventDefault();
         }                
         try {
             const response = await fetch(
-                url_accretionDB + 
+                url_accretionDB_getData + 
                 `?address1=${addressInfo.street_number}%20${addressInfo.route}%20${addressInfo.unit}` + 
                 `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`,
                 {
@@ -27,10 +28,10 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
             );
     
             if (response.ok) {
-                const data = await response.json();     
-                console.log("=== response data ===", data)
+                const data = await response.json();                     
                 setFetchStatus(true);
-                setDataATTOM(data); 
+                setDataATTOM(data);                 
+                setPropertyID(data.status.attomId);
             } else {
                 console.log("Failed to fetch data: ", response.statusText); 
                 setFetchStatus(false); 
@@ -42,13 +43,39 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
         }
     } 
 
-    const uploadPNGHandler = async (event) => { //API call to get data from accretion-backend
-        console.log("===uploadPNGHandler triggered===");
+    const uploadPNGHandler = async (event) => { //API call to get data from accretion-backend                
+        if (event) {
+            event.preventDefault();
+        }    
+
+        try {
+            const blob = await (await fetch(dataPNG)).blob(); 
+            const formData = new FormData(); 
+            formData.append('image', blob, 'image.png'); 
+            formData.append('propertyID', propertyID);
+            
+            const response = await fetch(url_accretionDB_postPNG, {
+                method: 'POST',
+                body: formData, 
+            }); 
+
+            if (response.ok) {
+                const data = await response.json(); 
+                console.log("===database visual PNG link===", data); 
+            } else {
+                console.error("Failed upload data visual to backend"); 
+            }            
+        } 
+        catch (error) {
+            console.error("Error during post to backend: ", error);      
+        }
+
+        
     } 
     
-    // trigger submitHandler when the addressInfo change 
+    // trigger getDataHandler when the addressInfo change 
     useEffect( () => {
-        submitHandler();
+        getDataHandler();
     }, [addressInfo])
 
     // trigger uploadPNGhandler when dataPNG is updated 
