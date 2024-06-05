@@ -4,8 +4,10 @@ import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB
 import { Button } from "react-bootstrap";
 
 // const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
-const url_accretionDB_getData = "http://127.0.0.1:8000/api/database-visualization/get-data/";
-const url_accretionDB_postPNG = "http://127.0.0.1:8000/api/database-visualization/post-png/";
+// const url_accretionDB_getData = "http://127.0.0.1:8000/api/database-visualization/get-data/";
+// const url_accretionDB_postPNG = "http://127.0.0.1:8000/api/database-visualization/post-png/";
+const url_accretionDB_getData = "http://3.147.46.192:8000/api/database-visualization/get-data/";
+const url_accretionDB_postPNG = "http://3.147.46.192:8000/api/database-visualization/post-png/";
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
     
