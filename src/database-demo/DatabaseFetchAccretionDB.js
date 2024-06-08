@@ -4,10 +4,22 @@ import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB
 import { Button } from "react-bootstrap";
 
 // const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
+// // test localhost 
 // const url_accretionDB_getData = "http://127.0.0.1:8000/api/database-visualization/get-data/";
 // const url_accretionDB_postPNG = "http://127.0.0.1:8000/api/database-visualization/post-png/";
-const url_accretionDB_getData = "http://3.147.46.192:8000/api/database-visualization/get-data/";
-const url_accretionDB_postPNG = "http://3.147.46.192:8000/api/database-visualization/post-png/";
+// // test AWS EC2 
+// const url_accretionDB_getData = "http://3.147.46.192:8000/api/database-visualization/get-data/";
+// const url_accretionDB_postPNG = "http://3.147.46.192:8000/api/database-visualization/post-png/";
+// // test localhost nginx
+// const url_accretionDB_getData = "http://127.0.0.1/api/database-visualization/get-data/";
+// const url_accretionDB_postPNG = "http://127.0.0.1/api/database-visualization/post-png/";
+// // test localhost nginx SSL
+// const url_accretionDB_getData = "https://127.0.0.1/api/database-visualization/get-data/";
+// const url_accretionDB_postPNG = "https://127.0.0.1/api/database-visualization/post-png/";
+// // test EC2 nginx SSL
+const url_accretionDB_getData = "https://backend-1.accretion.life/api/database-visualization/get-data/";
+const url_accretionDB_postPNG = "https://backend-1.accretion.life/api/database-visualization/post-png/";
+
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
     
