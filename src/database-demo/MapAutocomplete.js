@@ -58,20 +58,22 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
     const places = searchBox.getPlaces();
     if (places.length > 0) {                  
       if (places && places.length > 0) {
-        const place = places[0];                                            
-        place.address_components.forEach(component => {
-          if (component.types.includes('street_number')) {          
-            updateAddress("street_number", component.long_name); 
-          } else if (component.types.includes('route')) {
-            updateAddress("route", component.long_name); 
-          } else if (component.types.includes('locality')) {
-            updateAddress("locality", component.long_name); 
-          } else if (component.types.includes('administrative_area_level_1')) {
-            updateAddress("state", component.long_name); 
-          } else if (component.types.includes('postal_code')) {
-            updateAddress("zipcode", component.long_name); 
-          } 
-        });      
+        const place = places[0]; 
+        if (place && place.address_components) {                                           
+          place.address_components.forEach(component => {
+            if (component.types.includes('street_number')) {          
+              updateAddress("street_number", component.long_name); 
+            } else if (component.types.includes('route')) {
+              updateAddress("route", component.long_name); 
+            } else if (component.types.includes('locality')) {
+              updateAddress("locality", component.long_name); 
+            } else if (component.types.includes('administrative_area_level_1')) {
+              updateAddress("state", component.long_name); 
+            } else if (component.types.includes('postal_code')) {
+              updateAddress("zipcode", component.long_name); 
+            } 
+          }); 
+        }     
       }
     }
   },[searchBox]);

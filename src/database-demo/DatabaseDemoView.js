@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import CreateDeedVisualAccretionDB from './d3-attom-demo/CreateVisualAccretionDB';
-import TwitterCard from './social-media-share/TwitterCard';
+import TwitterCard from './share-save-edit/TwitterCard';
 
 import './DatabaseDemo.css'
 

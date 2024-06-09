@@ -1,41 +1,38 @@
 import React, {useState, useEffect} from "react";  
-// import CreateDeedVisualAttomAPI from "./d3-attom-demo/CreateVisualAttomAPI";
 import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB";
-import { Button } from "react-bootstrap";
+import Share from "./share-save-edit/Share.js";
+import Edit from "./share-save-edit/Edit.js";
+import Save from "./share-save-edit/Save.js";
 
-// const API_key_Attoms= process.env.REACT_APP_ATTOMS_API_KEY; 
-// // test localhost 
-// const url_accretionDB_getData = "http://127.0.0.1:8000/api/database-visualization/get-data/";
-// const url_accretionDB_postPNG = "http://127.0.0.1:8000/api/database-visualization/post-png/";
-// // test AWS EC2 
-// const url_accretionDB_getData = "http://3.147.46.192:8000/api/database-visualization/get-data/";
-// const url_accretionDB_postPNG = "http://3.147.46.192:8000/api/database-visualization/post-png/";
-// // test localhost nginx
-// const url_accretionDB_getData = "http://127.0.0.1/api/database-visualization/get-data/";
-// const url_accretionDB_postPNG = "http://127.0.0.1/api/database-visualization/post-png/";
-// // test localhost nginx SSL
-// const url_accretionDB_getData = "https://127.0.0.1/api/database-visualization/get-data/";
-// const url_accretionDB_postPNG = "https://127.0.0.1/api/database-visualization/post-png/";
-// // test EC2 nginx SSL
+import "./DatabaseDemo.css"
+
 const url_accretionDB_getData = "https://backend-1.accretion.life/api/database-visualization/get-data/";
 const url_accretionDB_postPNG = "https://backend-1.accretion.life/api/database-visualization/post-png/";
+const url_database_view = process.env.REACT_APP_LOCAL_HOST + "/database/demo/view/"; 
 
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
     
     const [dataATTOM, setDataATTOM] = useState(null); 
     const [dataPNG, setDataPNG] = useState(null); 
-    const [propertyID, setPropertyID] = useState(null);         
+    const [propertyID, setPropertyID] = useState(null);    
+    const [queryString, setQueryString] = useState(null);
+    const [shareLink, setShareLink] = useState(null); 
 
-    const getDataHandler = async (event) => { //API call to get data from accretion-backend
+    const getDataHandler = async (event) => { //API call to get data from accretion-backend 
         if (event) {
             event.preventDefault();
-        }                
+        }
+        setQueryString(`?address1=${addressInfo.street_number}%20${addressInfo.route}%20${addressInfo.unit}` + 
+                        `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`); 
+        
+        // set the shareLink
+        setShareLink(url_database_view + queryString); 
+                        
         try {
             const response = await fetch(
                 url_accretionDB_getData + 
-                `?address1=${addressInfo.street_number}%20${addressInfo.route}%20${addressInfo.unit}` + 
-                `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`,
+                queryString, 
                 {
                     method: "GET",                 
                 }
@@ -104,21 +101,20 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
                     <div> 
                         <CreateDeedVisualAccretionDB dataJson={dataATTOM} setDataPNG={setDataPNG}/> 
                     </div>
-                    <div className="row" style={{textAlign:"center"}}>
-                        <Button 
-                            variant='outline-primary' 
-                            id='button-share'
-                            style={{maxWidth:"600px", margin:"auto"}}
-                            // onClick={{shareHandler}} 
-                        >
-                            Share
-                        </Button> 
-                    </div>
+                    <div className="share-save-edit"> 
+                        <div className="row">
+                            <Share shareLink={shareLink} dataPNG={dataPNG} />
+                            <Save />
+                            <Edit />                                                                            
+                        </div>
+                    
+                    </div> 
+                    
                 </div>
             )} 
-            {dataPNG != null && (
+            {/* {dataPNG != null && (
                 <img src={dataPNG}/>
-            )}
+            )} */}
         </div>
     )
 };
