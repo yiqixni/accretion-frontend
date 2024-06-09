@@ -1,31 +1,46 @@
 import { Button, Alert } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FiShare } from "react-icons/fi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 
 import "../DatabaseDemo.css"
 
-
 export default function Share ({shareLink, dataPNG}) {
     
     const [showOverlay, setShowOverlay] = useState(false);
     const [copied, setCopied] = useState(false);
+    const overlayRef = useRef(null);
 
+    // Overlay 
     const closeOverlay = () => {
         setShowOverlay(false); 
     };
+    // Close overlay by clicking outside of it 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (overlayRef.current && !overlayRef.current.contains(event.target)) {                
+                closeOverlay();
+            }
+        }
 
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    // Share button handler
     const shareHandler = () => {
-        setShowOverlay(true);
-        console.log("share button clicked link = ", shareLink)
+        setShowOverlay(true);        
     }        
 
+    // Copy link to clipboard
     const copyToClipboard = () => {
         navigator.clipboard.writeText(shareLink)
         .then(() => {
             setCopied(true); // Set copied state to true
-            setTimeout(() => setCopied(false), 1000); // Reset copied state after 3 seconds
+            setTimeout(() => setCopied(false), 1000*100); // Reset copied state after 3 seconds
             console.log("Link copied to clipboard!");
         })
         .catch((err) => {
@@ -44,8 +59,8 @@ export default function Share ({shareLink, dataPNG}) {
             </Button> 
 
             {showOverlay && (
-                <div className="overlay-share">
-                    <div className="overlay-share-content">
+                <div className="overlay-share" >
+                    <div className="overlay-share-content" ref={overlayRef}>
                         <div className="row">
                             <div className="column" style={{textAlign:"left"}}>
                                 Share 

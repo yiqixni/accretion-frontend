@@ -3,7 +3,10 @@ import logoSVG from '../../layout/logo_letters_v2.svg';
 
 const convertSVGToPNG = (svgElement, setDataPNG, dataAddress) => {
     // Use html-to-image to convert the SVG element to a PNG
-    
+    if (!svgElement) {
+        console.error('SVG element is not defined');
+        return;
+    }
     toPng(svgElement)
         .then(function (pngDataUrl) {
             // setDataPNG(pngDataUrl); // Set the PNG data URL in the state
@@ -44,7 +47,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
             ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
 
             // Add address text below the logo            
-            ctx.font = '30px Arial';
+            ctx.font = '20px Arial';
             ctx.fillStyle = 'black';
             const addressText = dataAddress;
             const textWidth = ctx.measureText(addressText).width;                   
@@ -54,8 +57,6 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
             const enhancedDataUrl = canvas.toDataURL('image/png');
             setDataPNG(enhancedDataUrl);
 
-            // Upload the enhanced image to the server
-            // uploadImageToServer(enhancedDataUrl).then(uploadURL => setUploadURL(uploadURL));
         };
     };
 

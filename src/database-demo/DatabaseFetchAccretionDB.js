@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";  
-import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB";
+
+// import CreateDeedVisualAccretionDB from "./d3-attom-demo/CreateVisualAccretionDB.js";
+import CreateDeedVisualD3 from "./d3-attom-demo/CreateDeedVisualD3.js";
+import CreateDeedVisualPNG from "./d3-attom-demo/CreateDeedVisualPNG.js";
 import Share from "./share-save-edit/Share.js";
 import Edit from "./share-save-edit/Edit.js";
 import Save from "./share-save-edit/Save.js";
@@ -43,6 +46,7 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
                 setFetchStatus(true);
                 setDataATTOM(data);                 
                 setPropertyID(data.status.attomId);
+                // generate dataPNG
             } else {
                 console.log("Failed to fetch data: ", response.statusText); 
                 setFetchStatus(false); 
@@ -99,7 +103,12 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
             {dataATTOM != null && (
                 <div> 
                     <div> 
-                        <CreateDeedVisualAccretionDB dataJson={dataATTOM} setDataPNG={setDataPNG}/> 
+                        {/* <CreateDeedVisualAccretionDB dataJson={dataATTOM} setDataPNG={setDataPNG}/>  */}
+                        <CreateDeedVisualD3 dataJson={dataATTOM} /> 
+                        <div style={{display:"none"}}>
+                            <CreateDeedVisualPNG dataJson={dataATTOM} setDataPNG={setDataPNG}/> 
+                        </div>
+                        <img src={dataPNG}/>
                     </div>
                     <div className="share-save-edit"> 
                         <div className="row">
@@ -112,13 +121,11 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
                     
                 </div>
             )} 
-            {/* {dataPNG != null && (
-                <img src={dataPNG}/>
-            )} */}
         </div>
     )
 };
 
+// Stripe Payment Info
 {/* <div className="row">
                 <div className="column">
                     <a href="https://buy.stripe.com/aEUg1IczadSldQQ8ww">
