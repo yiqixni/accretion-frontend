@@ -14,7 +14,7 @@ const url_accretionDB_postPNG = "https://backend-1.accretion.life/api/database-v
 const url_database_view = process.env.REACT_APP_LOCAL_HOST + "/database/demo/view/"; 
 
 
-export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }) {    
+export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus }) {    
     
     const [dataATTOM, setDataATTOM] = useState(null); 
     const [dataPNG, setDataPNG] = useState(null); 
@@ -46,10 +46,12 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus }
                 setFetchStatus(true);
                 setDataATTOM(data);                 
                 setPropertyID(data.status.attomId);
+                setResponseStatus(true);
                 // generate dataPNG
             } else {
                 console.log("Failed to fetch data: ", response.statusText); 
                 setFetchStatus(false); 
+                setResponseStatus(true);
             }
         }
         catch (error) {

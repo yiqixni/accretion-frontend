@@ -7,7 +7,7 @@ import './DatabaseDemo.css';
 
 const API_key_google_maps = process.env.REACT_APP_GOOGLE_MAPS_API_KEY; 
 
-const MapAutocomplete = ({ updateAddressInfo }) => {
+const MapAutocomplete = ({ updateAddressInfo, setResponseStatus }) => {
   const [searchBox, setSearchBox] = useState(null);
 
   // states for ATTOM API
@@ -47,10 +47,10 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
   };
 
   const onPlacesChanged = useCallback(() => {
-    if (!searchBox) {
-      console.error("searchbox ref is null");
-      return;
-    }
+    // if (!searchBox) {
+    //   console.error("searchbox ref is null");
+    //   return;
+    // }
     if (typeof searchBox.getPlaces !== 'function') {
       console.error("searchBox.getPlaces is not a function.");
       return;
@@ -82,6 +82,7 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
     if (unit) {
       updateAddress("unit", unit)
     }    
+    setResponseStatus(false);
     updateAddressInfo(addressInfo);
   }
 

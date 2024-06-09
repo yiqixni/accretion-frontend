@@ -5,6 +5,7 @@ import '../DatabaseDemo.css';
 
 const CreateDeedVisualD3 = ({dataJson}) => {                
     const dataATTOM = dataJson.property[0].salehistory;        
+    const dataAddress = dataJson.property[0].address.oneLine;
     const svgRef = useRef(); // ref for the svg graph 
     const tooltipRef = useRef(null); // Ref for the tooltip
     
@@ -329,7 +330,8 @@ const CreateDeedVisualD3 = ({dataJson}) => {
     }, [dataJson]);
 
     return (
-        <div>            
+        <div>           
+            <div> {dataAddress} </div> 
             <svg ref={svgRef} width={width} height={height} ></svg>                        
             <div ref={tooltipRef} style={{textAlign:"left"}}></div> {/* Render the tooltip */}
         </div>

@@ -1,14 +1,27 @@
 import { useState } from 'react';
 import MapAutocomplete from './MapAutocomplete.js'; 
 import DatabaseFetchAccretionDB from './DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
-// import DatabaseFetchAttom from './DatabaseFetchAttom.js'; //direct fetch data from attom 
+import Lottie from 'react-lottie';
 // import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
 import ContactUs from '../contact-us/ContactUs.js';
+import AnimationDatabase from "../company/animation-database.json"
+
+const animationOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: AnimationDatabase,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }    
+};
 
 export default function DatabaseDemo () {
-
+    // responseStatus false if waiting for API to get back, true if get back from API
+    const [responseStatus, setResponseStatus] = useState(false);
+    // fetchStatus true if the API response is good, false if bad
     const [fetchStatus, setFetchStatus] = useState(null); 
+    // addressInfo from MapAutoComplete
     const [addressInfo, setAddressInfo] = useState(null);
     
     const updateAddressInfo = (data) => {
@@ -36,14 +49,21 @@ export default function DatabaseDemo () {
             </div>
 
             <div className='row' style={{marginBottom:"8svh"}}>                
-                <MapAutocomplete updateAddressInfo={updateAddressInfo} id='search-bar'/>                                                
+                <MapAutocomplete updateAddressInfo={updateAddressInfo} setResponseStatus={setResponseStatus} id='search-bar'/>                                                
             </div>
 
             {addressInfo && (                   
                 <div>                     
                     <div className='row' style={{marginBottom:"8svh"}}>
-                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} />                        
-                    </div>                                       
+                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} setResponseStatus={setResponseStatus} />                        
+                    </div>        
+                    {!responseStatus && (
+                        <div className='row'>
+                            <div id='animation' style={{maxWidth:"300px"}}>
+                                <Lottie options={animationOptions}/>
+                            </div>  
+                        </div>
+                    )}
                     {fetchStatus == true ? (
                         <div className='row'> 
                             <div className='text'> 
@@ -76,31 +96,7 @@ export default function DatabaseDemo () {
                     
                     
                 </div>
-            )}                             
-
-            {/* <div className='row'>
-                <div id='small-title'> 
-                    The Best in Class Visualization Tool for Title Abstraction 
-                </div> 
-            </div>            
-            <div className='row'>    
-
-                <div className='text'>
-                    Experience the title abstract visual for the property located in 22 Dell St. Somerville, MA. 
-                    <br/>
-                    Just click on the visual to inspect the title abstract detail. 
-                    <br/>
-                    Power by the best visualization tool from Accretion,                         
-                    you can effortlessly inteprete the title abstract.                                                                                                                         
-                </div>                    
-                
-            </div>
-            
-
-            <div className='row'>                
-                <CreateDeedVisualAttom visualWidth={600} />
-            </div>                         */}
-                                                                                        
+            )}                                                                                                                                 
         </div>
     )
 }
