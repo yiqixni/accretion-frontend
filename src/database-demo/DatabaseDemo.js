@@ -4,7 +4,6 @@ import DatabaseFetchAccretionDB from './accretion-backend-api/DatabaseFetchAccre
 import Lottie from 'react-lottie';
 // import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
-import ContactUs from '../contact-us/ContactUs.js';
 import AnimationDatabase from "../company/animation-database.json"
 import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3.js';
 import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
