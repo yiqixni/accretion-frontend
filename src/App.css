@@ -59,11 +59,11 @@
 
 /* DEV MODE: highlights all borders */
 
-.home, .segment, .row, .column, .column-2 .overlay {
+/* .home, .segment, .row, .column, .column-2 .overlay {
   border: solid black;
   border-width: 0.05pt;
 }
 
 .slider, .slider-logo, #slider-logo-id {
   border: solid black;
-}
+} */

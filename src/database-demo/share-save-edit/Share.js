@@ -4,7 +4,7 @@ import { FiShare } from "react-icons/fi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 
-import "../DatabaseDemo.css"
+import "../../overlay/overlay.css"
 
 export default function Share ({shareLink, dataPNG}) {
     

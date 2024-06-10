@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import "../DatabaseDemo.css";
 
 const url_accretionDB_getData = "https://backend-1.accretion.life/api/database-visualization/get-data/";
-const url_database_view = process.env.REACT_APP_LOCAL_HOST + "/database/demo/view/"; 
+const url_database_view = process.env.REACT_APP_PROD_HOST + "/database/demo/view/"; 
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON, setShareLink }) {        
     if (!addressInfo) {
