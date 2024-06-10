@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import MapAutocomplete from './google-map-api/MapAutocomplete.js'; 
-import DatabaseFetchAccretionDB from './accretion-backend-api/DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
+import MapAutocomplete from './MapAutocomplete.js'; 
+import DatabaseFetchAccretionDB from './DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
 import Lottie from 'react-lottie';
 // import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
 import ContactUs from '../contact-us/ContactUs.js';
 import AnimationDatabase from "../company/animation-database.json"
-import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3.js';
 
 const animationOptions = {
     loop: true,
@@ -18,22 +17,16 @@ const animationOptions = {
 };
 
 export default function DatabaseDemo () {
-    ////////// State Hooks //////////////
-    // addressInfo from MapAutoComplete
-    // const [addressInfo, setAddressInfo] = useState(null);
-    // states for Google Maps API
-    const [addressInfo, setAddressInfo] = useState(null); 
-    // json data from backend API
-    const [dataJSON, setDataJSON] = useState(null); 
     // responseStatus false if waiting for API to get back, true if get back from API
     const [responseStatus, setResponseStatus] = useState(false);
     // fetchStatus true if the API response is good, false if bad
     const [fetchStatus, setFetchStatus] = useState(null); 
+    // addressInfo from MapAutoComplete
+    const [addressInfo, setAddressInfo] = useState(null);
     
-    
-    // const updateAddressInfo = (data) => {
-    //     setAddressInfo(data);
-    // } 
+    const updateAddressInfo = (data) => {
+        setAddressInfo(data);
+    } 
 
     const updateFetchStatus = (data) => {
         setFetchStatus(data); 
@@ -56,31 +49,10 @@ export default function DatabaseDemo () {
             </div>
 
             <div className='row' style={{marginBottom:"8svh"}}>                
-                <MapAutocomplete addressInfo={addressInfo} setAddressInfo={setAddressInfo} setResponseStatus={setResponseStatus} id='search-bar'/>                                                
+                <MapAutocomplete updateAddressInfo={updateAddressInfo} setResponseStatus={setResponseStatus} id='search-bar'/>                                                
             </div>
 
             {addressInfo && (                   
-                <div>                     
-                    <div className='row' style={{marginBottom:"8svh"}}>
-                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} setResponseStatus={setResponseStatus} setDataJSON={setDataJSON} />                        
-                    </div>        
-                    {!responseStatus && (
-                        <div className='row'>
-                            <div id='animation' style={{maxWidth:"300px"}}>
-                                <Lottie options={animationOptions}/>
-                            </div>  
-                        </div>
-                    )}
-                </div>
-            )}
-            {(dataJSON && responseStatus) && (
-                <div className='row'>
-                    <CreateDeedVisualD3 dataJson={dataJSON}/>
-                </div>
-            )}
-            
-
-            {/* {addressInfo && (                   
                 <div>                     
                     <div className='row' style={{marginBottom:"8svh"}}>
                         <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} setResponseStatus={setResponseStatus} />                        
@@ -124,7 +96,7 @@ export default function DatabaseDemo () {
                     
                     
                 </div>
-            )}                                                                                                                                  */}
+            )}                                                                                                                                 
         </div>
     )
 }
