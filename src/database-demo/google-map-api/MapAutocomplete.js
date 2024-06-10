@@ -10,6 +10,7 @@ const API_key_google_maps = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const libraries = ['places'];
 
 const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus }) => {
+  // searchBox state is reference to StandAloneSearchBox 
   const [searchBox, setSearchBox] = useState(null);  
 
   // states for getting new address from Google Maps API
@@ -35,7 +36,8 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus }) => 
     googleMapsApiKey: API_key_google_maps,
     libraries,
   });
-
+  
+  // StandAloneSearchBox passes its reference to onLoad 
   const onLoad = (ref) => {    
     if (ref) {
       const usaBounds = {
@@ -47,7 +49,7 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus }) => 
       ref.setBounds(usaBounds);
       setSearchBox(ref);      
     } else {
-      console.error("ONLOAD NO REF FOUND");
+      console.error("MapAutoComplete: onLoad ref not defined");
     }   
   };
 
@@ -63,8 +65,7 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus }) => 
     const places = searchBox.getPlaces();
     if (places.length > 0) {                  
       if (places && places.length > 0) {
-        const place = places[0]; 
-        console.log("onPlacesChanged triggered, place=", place)
+        const place = places[0];         
         if (place && place.address_components) {                                             
           place.address_components.forEach(component => {
             if (component.types.includes('street_number')) {          

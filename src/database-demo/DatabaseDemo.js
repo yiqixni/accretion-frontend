@@ -67,6 +67,7 @@ export default function DatabaseDemo () {
                     {!responseStatus && (
                         <div className='row'>
                             <div id='animation' style={{maxWidth:"300px"}}>
+                                <div> Loading AccretionDB... </div>
                                 <Lottie options={animationOptions}/>
                             </div>  
                         </div>

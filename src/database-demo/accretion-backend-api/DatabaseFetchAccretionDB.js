@@ -4,8 +4,7 @@ import "../DatabaseDemo.css";
 const url_accretionDB_getData = "https://backend-1.accretion.life/api/database-visualization/get-data/";
 const url_database_view = process.env.REACT_APP_LOCAL_HOST + "/database/demo/view/"; 
 
-export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON }) {    
-    console.log("Database fetch addressInfo:", addressInfo);
+export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON }) {        
     if (!addressInfo) {
         console.error("DatabaseFetch: addressInfo is null");
         return null;
@@ -26,12 +25,12 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
         setShareLink(url_database_view + queryString); 
         
         if (queryString == null) {            
-            console.error("DatabaseFetch: set query string is null");
+            console.error("DatabaseFetch: queryString is null");
             return null;
         }
         
         try {
-            console.log("DatabaseFetch: MAKING AN API CALL");
+            console.log("DatabaseFetch: Make API call to AccretionDB...");
             const response = await fetch(
                 url_accretionDB_getData + 
                 queryString, 
@@ -39,20 +38,20 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
                     method: "GET",                 
                 }
             );
-    
+            console.log("DatabaseFetch: Complete API call to AccretionDB")
             if (response.ok) {
                 const data = await response.json();                     
                 setFetchStatus(true);
                 setDataJSON(data);                                 
                 setResponseStatus(true);                 
             } else {
-                console.log("Failed to fetch data: ", response.statusText); 
+                console.error("Failed to fetch data: ", response.statusText); 
                 setFetchStatus(false); 
                 setResponseStatus(true);
             }
         }
         catch (error) {
-            console.log("Error during fetch: ", error);            
+            console.error("Error during fetch: ", error);            
             setFetchStatus(false);            
         }
     } 
