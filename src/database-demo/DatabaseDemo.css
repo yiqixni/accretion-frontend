@@ -182,11 +182,11 @@ rect:hover{
     width: 90%;
     margin: auto;
 }
-
 #button-share:hover {    
     border-radius: var(--button-border-radius-hover);
 }
 
+/* section for share overlay  */
 .overlay-share {
     position: fixed;
     top: 0;
@@ -201,10 +201,21 @@ rect:hover{
 }
 
 .overlay-share-content {
+    /* width: 60%; */
     background: white;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+}
+
+.overlay-share-content .row{
+    display: flex;    
+}
+
+.overlay-share-content .row .column{
+    /* display: flex; */
+    /* min-height: 100%; */
+    margin: 0;
 }
 
 .overlay-share-content img {
@@ -212,14 +223,39 @@ rect:hover{
     height: auto;
 }
 
+#button-close {    
+    text-align: right;
+    border: none;
+}
+#button-close:hover {
+    background-color: white;
+}
+#button-copy-link {
+    font-size: 12pt;
+    color: black;
+    border: solid black;
+    margin: auto;
+}
+#button-copy-link:hover {
+    /* border-radius: var(--button-border-radius-hover); */
+    background-color: gray;
+}
+#input-share-link {
+    font-size: 12pt;
+    width: 100%;
+    height: 100%;
+    border: solid black;
+    border-radius: 5pt;
+}
+
 .copy-success-message {
-    font-size: 10pt;
+    font-size: 15pt;
     position: fixed;
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
+    background-color: rgb(128, 233, 128);
+    color: black;
     padding: 1%;
     border-radius: 5px;
     z-index: 1001;

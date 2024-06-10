@@ -9,7 +9,7 @@ const API_key_google_maps = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const libraries = ['places'];
 
-const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDataPNG }) => {
+const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDataPNG, setDataJSON }) => {
   // searchBox state is reference to StandAloneSearchBox 
   const [searchBox, setSearchBox] = useState(null);  
 
@@ -65,7 +65,7 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDa
     const places = searchBox.getPlaces();
     if (places.length > 0) {                  
       if (places && places.length > 0) {
-        const place = places[0];         
+        const place = places[0];                 
         if (place && place.address_components) {                                             
           place.address_components.forEach(component => {
             if (component.types.includes('street_number')) {          
@@ -95,6 +95,7 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDa
       setAddressInfo(newAddressInfo);
       setResponseStatus(false);
       setDataPNG(null);
+      setDataJSON(null); 
     } else {
       console.warn("MapAutoComplete: search button clicked, enter a new address for search.");
     }
@@ -108,7 +109,7 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDa
 
   useEffect(() => {
     if (searchBox) {
-      console.log('searchBox is set:', searchBox);
+      console.log('searchBox Ref is created');
     }
   }, [searchBox]);
 

@@ -11,6 +11,7 @@ const CreateDeedVisualD3 = ({dataJson}) => {
     
     const height = 300; 
     const width = Math.min(window.outerWidth * 0.9, 600);
+    // const width = 600; //FIXED WIDTH
 
     const borderRadiusOff = 10;     
 

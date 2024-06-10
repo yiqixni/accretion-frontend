@@ -26,8 +26,10 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
         // Set canvas dimensions to the image dimensions
         const header_height = image.height * 0.5; // define header space anchored to the deed graph  
         const header_width = image.width; 
-        canvas.width = image.width;
-        canvas.height = image.height + header_height;
+        const canvasWidth = image.width;
+        const canvasHeight = image.height + header_height;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
 
         // Draw the original image onto the canvas
         ctx.drawImage(image, 0, header_height);
@@ -45,13 +47,21 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
 
             // Draw the logo onto the canvas
             ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
-
-            // Add address text below the logo            
-            ctx.font = '20px Arial';
-            ctx.fillStyle = 'black';
+            
+            // Adjust font size to fit the text within 80% of canvas width
             const addressText = dataAddress;
-            const textWidth = ctx.measureText(addressText).width;                   
-            ctx.fillText(addressText, header_width / 2 - textWidth / 2, header_height*0.8);
+            
+            let fontSize = 20; // Initial font size
+            ctx.font = `${fontSize}px Arial`;
+            let textWidth = ctx.measureText(addressText).width;
+            while (textWidth < canvasWidth * 0.8) {
+                fontSize += 1;
+                ctx.font = `${fontSize}px Arial`;
+                textWidth = ctx.measureText(addressText).width;
+            }
+
+            // Draw the adjusted text
+            ctx.fillText(addressText, canvasWidth / 2 - textWidth / 2, header_height*0.8);
 
             // Convert the canvas to a data URL
             const enhancedDataUrl = canvas.toDataURL('image/png');
@@ -62,6 +72,5 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
 
     image.src = dataUrl;
 };
-
 
 export default convertSVGToPNG; 

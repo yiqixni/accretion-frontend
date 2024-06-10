@@ -36,7 +36,7 @@ export default function DatabaseDemo () {
     // dataPNG for deed visual static image
     const [dataPNG, setDataPNG] = useState(null); 
     // shareLink for sharing the deed visual 
-    const [shareLink, setShareLink] = useState(null);
+    const [shareLink, setShareLink] = useState(null);    
     
     
     const updateFetchStatus = (data) => {
@@ -64,6 +64,7 @@ export default function DatabaseDemo () {
                                  setAddressInfo={setAddressInfo} 
                                  setResponseStatus={setResponseStatus} 
                                  setDataPNG={setDataPNG} 
+                                 setDataJSON={setDataJSON}
                                  id='search-bar'
                 />                                                
             </div>
@@ -102,6 +103,19 @@ export default function DatabaseDemo () {
                             <Edit />                                                                            
                         </div>                    
                     </div> 
+                </div>
+            )}
+            {(fetchStatus == false) && (
+                <div>
+                    <div>
+                        We Can't Find Your Property : - ( 
+                        <br/>
+                        <br/>
+                        Contact Us To Learn More
+                    </div>
+                    <div>
+                        Contact Button
+                    </div>
                 </div>
             )}
             

@@ -18,7 +18,7 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
         }
         const queryString = `?address1=${addressInfo.street_number}%20${addressInfo.route}%20${addressInfo.unit}` + 
                             `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`;
-                                
+
         // set the shareLink
         setShareLink(url_database_view + queryString); 
         
@@ -50,7 +50,8 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
         }
         catch (error) {
             console.error("Error during fetch: ", error);            
-            setFetchStatus(false);            
+            setFetchStatus(false);     
+            setResponseStatus(true);       
         }
     } 
 

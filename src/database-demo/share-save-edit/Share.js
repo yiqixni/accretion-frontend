@@ -40,7 +40,7 @@ export default function Share ({shareLink, dataPNG}) {
         navigator.clipboard.writeText(shareLink)
         .then(() => {
             setCopied(true); // Set copied state to true
-            setTimeout(() => setCopied(false), 1000*100); // Reset copied state after 3 seconds
+            setTimeout(() => setCopied(false), 500); // Reset copied state after 3 seconds
             console.log("Link copied to clipboard!");
         })
         .catch((err) => {
@@ -62,17 +62,17 @@ export default function Share ({shareLink, dataPNG}) {
                 <div className="overlay-share" >
                     <div className="overlay-share-content" ref={overlayRef}>
                         <div className="row">
-                            <div className="column" style={{textAlign:"left"}}>
+                            <div className="column" style={{textAlign:"left",margin:"auto", paddingLeft:"5%"}}>
                                 Share 
                             </div> 
                             <div className="column" style={{textAlign:"right"}}>
-                            <Button 
-                                style={{border:"none"}}                                
-                                variant="outline-primary" 
-                                onClick={closeOverlay}
-                            >
-                                <IoMdCloseCircleOutline />
-                            </Button>
+                                <Button                                                                     
+                                    variant="outline-primary" 
+                                    onClick={closeOverlay}
+                                    id="button-close"
+                                >
+                                    <IoMdCloseCircleOutline style={{minWidth:"100px"}} />
+                                </Button>
                             </div> 
                         </div>
 
@@ -80,22 +80,23 @@ export default function Share ({shareLink, dataPNG}) {
                             <img src={dataPNG} alt="Data" />
                         </div>
 
-                        <div className="row">
-                            <div className="column" style={{flex:"5"}}>
+                        <div className="row" >
+                            <div className="column" style={{flex:"6"}}>
                                 <input 
-                                    style={{width:"100%"}}
+                                    // style={{width:"100%"}}
                                     type="text" 
                                     value={shareLink} 
                                     readOnly 
-                                    className="share-link-input"
+                                    id="input-share-link"
                                 />
                             </div>
                             <div className="column" style={{flex:"1"}}>
                                 <Button
                                     onClick={copyToClipboard}
-                                    style={{fontSize:"10pt"}}
+                                    variant="outline-primary"                                     
+                                    id="button-copy-link"
                                 >
-                                    Copy link
+                                    Copy
                                 </Button>
                                 {copied && ( // Show the alert if copied state is true
                                     <div className="copy-success-message">
