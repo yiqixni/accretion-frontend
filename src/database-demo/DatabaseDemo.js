@@ -11,6 +11,7 @@ import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
 import Share from "./share-save-edit/Share.js";
 import Edit from "./share-save-edit/Edit.js";
 import Save from "./share-save-edit/Save.js";
+import DatabasePostPNG from './accretion-backend-api/DatabasePostPNG.js';
 
 const animationOptions = {
     loop: true,
@@ -23,8 +24,7 @@ const animationOptions = {
 
 export default function DatabaseDemo () {
     ////////// State Hooks //////////////
-    // addressInfo from MapAutoComplete
-    // const [addressInfo, setAddressInfo] = useState(null);
+
     // states for Google Maps API
     const [addressInfo, setAddressInfo] = useState(null); 
     // json data from backend API
@@ -38,10 +38,7 @@ export default function DatabaseDemo () {
     // shareLink for sharing the deed visual 
     const [shareLink, setShareLink] = useState(null);
     
-    // const updateAddressInfo = (data) => {
-    //     setAddressInfo(data);
-    // } 
-
+    
     const updateFetchStatus = (data) => {
         setFetchStatus(data); 
     }   
@@ -95,6 +92,9 @@ export default function DatabaseDemo () {
                 <div className='row'>
                     <CreateDeedVisualD3 dataJson={dataJSON}/>
                     <CreateDeedVisualPNG dataJson={dataJSON} setDataPNG={setDataPNG}/> 
+                    {dataPNG && (
+                        <DatabasePostPNG dataPNG={dataPNG} dataJSON={dataJSON} />
+                    )}                  
                     <div className="share-save-edit"> 
                         <div className="row">
                             <Share shareLink={shareLink} dataPNG={dataPNG} />

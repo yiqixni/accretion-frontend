@@ -9,8 +9,7 @@ const convertSVGToPNG = (svgElement, setDataPNG, dataAddress) => {
         return;
     }
     toPng(svgElement)
-        .then(function (pngDataUrl) {
-            // setDataPNG(pngDataUrl); // Set the PNG data URL in the state
+        .then(function (pngDataUrl) {            
             addLogoAndTextToImage(pngDataUrl, setDataPNG, dataAddress);
         })
         .catch(function (error) {
