@@ -4,13 +4,13 @@ import "../DatabaseDemo.css";
 const url_accretionDB_getData = "https://backend-1.accretion.life/api/database-visualization/get-data/";
 const url_database_view = process.env.REACT_APP_LOCAL_HOST + "/database/demo/view/"; 
 
-export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON }) {        
+export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON, setShareLink }) {        
     if (!addressInfo) {
         console.error("DatabaseFetch: addressInfo is null");
         return null;
     }
     // const [queryString, setQueryString] = useState(null);
-    const [shareLink, setShareLink] = useState(null); 
+    // const [shareLink, setShareLink] = useState(null); 
 
     const getDataHandler = async (event) => { //API call to get data from accretion-backend 
         if (event) {
@@ -18,9 +18,7 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
         }
         const queryString = `?address1=${addressInfo.street_number}%20${addressInfo.route}%20${addressInfo.unit}` + 
                             `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`;
-        
-        // setQueryString(queryStringTemp); 
-        
+                                
         // set the shareLink
         setShareLink(url_database_view + queryString); 
         

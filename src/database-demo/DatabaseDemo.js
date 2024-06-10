@@ -8,6 +8,9 @@ import ContactUs from '../contact-us/ContactUs.js';
 import AnimationDatabase from "../company/animation-database.json"
 import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3.js';
 import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
+import Share from "./share-save-edit/Share.js";
+import Edit from "./share-save-edit/Edit.js";
+import Save from "./share-save-edit/Save.js";
 
 const animationOptions = {
     loop: true,
@@ -32,6 +35,8 @@ export default function DatabaseDemo () {
     const [fetchStatus, setFetchStatus] = useState(null); 
     // dataPNG for deed visual static image
     const [dataPNG, setDataPNG] = useState(null); 
+    // shareLink for sharing the deed visual 
+    const [shareLink, setShareLink] = useState(null);
     
     // const updateAddressInfo = (data) => {
     //     setAddressInfo(data);
@@ -68,11 +73,12 @@ export default function DatabaseDemo () {
 
             {addressInfo && (                   
                 <div>                     
-                    <div className='row' style={{marginBottom:"8svh"}}>
+                    <div>
                         <DatabaseFetchAccretionDB   addressInfo={addressInfo} 
                                                     setFetchStatus={updateFetchStatus} 
                                                     setResponseStatus={setResponseStatus} 
                                                     setDataJSON={setDataJSON} 
+                                                    setShareLink={setShareLink}
                         />                        
                     </div>        
                     {!responseStatus && (
@@ -88,15 +94,14 @@ export default function DatabaseDemo () {
             {(dataJSON && responseStatus) && (
                 <div className='row'>
                     <CreateDeedVisualD3 dataJson={dataJSON}/>
-                    <div style={{display:"none"}}>
-                        <CreateDeedVisualPNG dataJson={dataJSON} setDataPNG={setDataPNG}/> 
-                    </div>
-                    <div> 
-                        {/* {dataPNG && (
-                            <img src={dataPNG} />
-                        )} */}
-                        <img src={dataPNG} />
-                    </div>
+                    <CreateDeedVisualPNG dataJson={dataJSON} setDataPNG={setDataPNG}/> 
+                    <div className="share-save-edit"> 
+                        <div className="row">
+                            <Share shareLink={shareLink} dataPNG={dataPNG} />
+                            <Save />
+                            <Edit />                                                                            
+                        </div>                    
+                    </div> 
                 </div>
             )}
             

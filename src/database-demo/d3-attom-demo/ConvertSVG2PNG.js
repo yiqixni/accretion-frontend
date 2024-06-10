@@ -2,6 +2,7 @@ import { toPng } from 'html-to-image';
 import logoSVG from '../../layout/logo_letters_v2.svg';
 
 const convertSVGToPNG = (svgElement, setDataPNG, dataAddress) => {
+    
     // Use html-to-image to convert the SVG element to a PNG
     if (!svgElement) {
         console.error('SVG element is not defined');

@@ -1,12 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import * as d3 from 'd3';
 import ConvertSVG2PNG from './ConvertSVG2PNG';
 
 const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {           
-    console.log("CreateDeedVidualPNG: dataJson=", dataJson);
+    
     const dataATTOM = dataJson.property[0].salehistory;    
-    const dataAddress = dataJson.property[0].address.oneLine;
-    const svgRef = useRef(); // ref for the svg graph     
+    const dataAddress = dataJson.property[0].address.oneLine;    
     
     const height = 300; 
     const width = 600; //FIXED WIDTH
@@ -57,11 +56,18 @@ const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {
                             .range([0, width-widthMortgage]); 
     
 
-    useEffect(() => {        
-        // create svg canvas for the deed record        
-        const svg = d3.select(svgRef.current)
-                        .attr("height", height) 
-                        .attr("width", width) 
+    useEffect(() => {      
+         // Create a temporary container
+         const tempContainer = document.createElement('div');
+         tempContainer.style.position = 'absolute';
+         tempContainer.style.top = '-9999px';
+         document.body.appendChild(tempContainer);
+ 
+         // Create SVG element within the temporary container
+         const svg = d3.select(tempContainer)  
+                        .append('svg')
+                        .attr('height', height) 
+                        .attr('width', width);    
         
         // clear previous svg content
         svg.selectAll("*").remove();
@@ -192,14 +198,14 @@ const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {
                    
             }
         }
-
-        ConvertSVG2PNG(svgRef.current, setDataPNG, dataAddress);
+        
+        ConvertSVG2PNG(tempContainer.firstChild, setDataPNG, dataAddress);
         
     }, [dataJson]);
     
-    return (
-        <svg ref={svgRef} width={width} height={height} ></svg>                        
-    );
+    return () => {
+        document.body.removeChild(tempContainer);
+    };
 };
 
 export default CreateDeedVisualPNG;
