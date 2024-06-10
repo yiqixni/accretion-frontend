@@ -2,6 +2,8 @@ import { useState } from 'react';
 import MapAutocomplete from './google-map-api/MapAutocomplete.js'; 
 import DatabaseFetchAccretionDB from './accretion-backend-api/DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
 import Lottie from 'react-lottie';
+import Loading from './loading-error-handling/Loading.js';
+import Error from './loading-error-handling/Error.js';
 // import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
 import AnimationDatabase from "../company/animation-database.json"
@@ -79,12 +81,7 @@ export default function DatabaseDemo () {
                         />                        
                     </div>        
                     {!responseStatus && (
-                        <div className='row'>
-                            <div id='animation' style={{maxWidth:"300px"}}>
-                                <div> Loading AccretionDB... </div>
-                                <Lottie options={animationOptions}/>
-                            </div>  
-                        </div>
+                        <Loading/>
                     )}
                 </div>
             )}
@@ -105,17 +102,7 @@ export default function DatabaseDemo () {
                 </div>
             )}
             {(fetchStatus == false) && (
-                <div>
-                    <div>
-                        We Can't Find Your Property : - ( 
-                        <br/>
-                        <br/>
-                        Contact Us To Learn More
-                    </div>
-                    <div>
-                        Contact Button
-                    </div>
-                </div>
+                <Error/>
             )}
             
 
