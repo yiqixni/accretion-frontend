@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import ConvertSVG2PNG from './ConvertSVG2PNG';
 
 const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {           
-
+    console.log("CreateDeedVidualPNG: dataJson=", dataJson);
     const dataATTOM = dataJson.property[0].salehistory;    
     const dataAddress = dataJson.property[0].address.oneLine;
     const svgRef = useRef(); // ref for the svg graph     
@@ -198,7 +198,7 @@ const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {
     }, [dataJson]);
     
     return (
-        <svg ref={svgRef} width={width} height={height}></svg>                        
+        <svg ref={svgRef} width={width} height={height} ></svg>                        
     );
 };
 

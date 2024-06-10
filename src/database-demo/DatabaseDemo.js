@@ -7,6 +7,7 @@ import Lottie from 'react-lottie';
 import ContactUs from '../contact-us/ContactUs.js';
 import AnimationDatabase from "../company/animation-database.json"
 import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3.js';
+import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
 
 const animationOptions = {
     loop: true,
@@ -29,7 +30,8 @@ export default function DatabaseDemo () {
     const [responseStatus, setResponseStatus] = useState(false);
     // fetchStatus true if the API response is good, false if bad
     const [fetchStatus, setFetchStatus] = useState(null); 
-    
+    // dataPNG for deed visual static image
+    const [dataPNG, setDataPNG] = useState(null); 
     
     // const updateAddressInfo = (data) => {
     //     setAddressInfo(data);
@@ -56,13 +58,22 @@ export default function DatabaseDemo () {
             </div>
 
             <div className='row' style={{marginBottom:"8svh"}}>                
-                <MapAutocomplete addressInfo={addressInfo} setAddressInfo={setAddressInfo} setResponseStatus={setResponseStatus} id='search-bar'/>                                                
+                <MapAutocomplete addressInfo={addressInfo} 
+                                 setAddressInfo={setAddressInfo} 
+                                 setResponseStatus={setResponseStatus} 
+                                 setDataPNG={setDataPNG} 
+                                 id='search-bar'
+                />                                                
             </div>
 
             {addressInfo && (                   
                 <div>                     
                     <div className='row' style={{marginBottom:"8svh"}}>
-                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} setResponseStatus={setResponseStatus} setDataJSON={setDataJSON} />                        
+                        <DatabaseFetchAccretionDB   addressInfo={addressInfo} 
+                                                    setFetchStatus={updateFetchStatus} 
+                                                    setResponseStatus={setResponseStatus} 
+                                                    setDataJSON={setDataJSON} 
+                        />                        
                     </div>        
                     {!responseStatus && (
                         <div className='row'>
@@ -77,6 +88,15 @@ export default function DatabaseDemo () {
             {(dataJSON && responseStatus) && (
                 <div className='row'>
                     <CreateDeedVisualD3 dataJson={dataJSON}/>
+                    <div style={{display:"none"}}>
+                        <CreateDeedVisualPNG dataJson={dataJSON} setDataPNG={setDataPNG}/> 
+                    </div>
+                    <div> 
+                        {/* {dataPNG && (
+                            <img src={dataPNG} />
+                        )} */}
+                        <img src={dataPNG} />
+                    </div>
                 </div>
             )}
             
