@@ -1,17 +1,20 @@
 import { useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'; 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { FaSearch } from "react-icons/fa";
 
-import './DatabaseDemo.css';
+import '../DatabaseDemo.css';
 
 const API_key_google_maps = process.env.REACT_APP_GOOGLE_MAPS_API_KEY; 
 
-const MapAutocomplete = ({ updateAddressInfo }) => {
-  const [searchBox, setSearchBox] = useState(null);
+const libraries = ['places'];
 
-  // states for ATTOM API
-  const [addressInfo, setAddressInfo] = useState({
+const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDataPNG, setDataJSON, setFetchStatus, setLinkPNG }) => {
+  // searchBox state is reference to StandAloneSearchBox 
+  const [searchBox, setSearchBox] = useState(null);  
+
+  // states for getting new address from Google Maps API
+  const [newAddressInfo, setNewAddressInfo] = useState({
     "street_number": "",
     "route": "", 
     "locality": "",
@@ -19,8 +22,9 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
     "state": "",
     "zipcode": ""
   }); 
-  const updateAddress = (key, val) => {
-    setAddressInfo(prevState => ({
+
+  const updateNewAddressInfo = (key, val) => {
+    setNewAddressInfo(prevState => ({
       ...prevState, 
       [key]: val
     }));
@@ -30,11 +34,11 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: API_key_google_maps,
-    libraries: ['places'],
+    libraries,
   });
-
-  const onLoad = (ref) => {
-    setSearchBox(ref);
+  
+  // StandAloneSearchBox passes its reference to onLoad 
+  const onLoad = (ref) => {    
     if (ref) {
       const usaBounds = {
         east: -66.93457,
@@ -43,12 +47,15 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
         south: 24.396308,
       };
       ref.setBounds(usaBounds);
-    }    
+      setSearchBox(ref);      
+    } else {
+      console.error("MapAutoComplete: onLoad ref not defined");
+    }   
   };
 
   const onPlacesChanged = useCallback(() => {
     if (!searchBox) {
-      console.error("searchbox ref is null");
+      console.error("onPlacesChanged: searchbox ref is null");
       return;
     }
     if (typeof searchBox.getPlaces !== 'function') {
@@ -58,29 +65,42 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
     const places = searchBox.getPlaces();
     if (places.length > 0) {                  
       if (places && places.length > 0) {
-        const place = places[0];                                            
-        place.address_components.forEach(component => {
-          if (component.types.includes('street_number')) {          
-            updateAddress("street_number", component.long_name); 
-          } else if (component.types.includes('route')) {
-            updateAddress("route", component.long_name); 
-          } else if (component.types.includes('locality')) {
-            updateAddress("locality", component.long_name); 
-          } else if (component.types.includes('administrative_area_level_1')) {
-            updateAddress("state", component.long_name); 
-          } else if (component.types.includes('postal_code')) {
-            updateAddress("zipcode", component.long_name); 
-          } 
-        });      
+        const place = places[0];                 
+        if (place && place.address_components) {                                             
+          place.address_components.forEach(component => {
+            if (component.types.includes('street_number')) {          
+              updateNewAddressInfo("street_number", component.long_name); 
+            } else if (component.types.includes('route')) {
+              updateNewAddressInfo("route", component.long_name); 
+            } else if (component.types.includes('locality')) {
+              updateNewAddressInfo("locality", component.long_name); 
+            } else if (component.types.includes('administrative_area_level_1')) {
+              updateNewAddressInfo("state", component.long_name); 
+            } else if (component.types.includes('postal_code')) {
+              updateNewAddressInfo("zipcode", component.long_name); 
+            } 
+          });          
+        }     
       }
     }
   },[searchBox]);
 
+
   const submitSearch = () => {      
     if (unit) {
-      updateAddress("unit", unit)
+      updateNewAddressInfo("unit", unit);
     }    
-    updateAddressInfo(addressInfo);
+
+    if (JSON.stringify(newAddressInfo) !== JSON.stringify(addressInfo)) {
+      setAddressInfo(newAddressInfo);
+      setResponseStatus(false);
+      setFetchStatus(null);
+      setDataPNG(null);
+      setDataJSON(null); 
+      // setLinkPNG(null);
+    } else {
+      console.warn("MapAutoComplete: search button clicked, enter a new address for search.");
+    }
   }
 
   const handleKeyStroke = (e) => {
@@ -88,6 +108,13 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
       submitSearch();
     }
   }
+
+  useEffect(() => {
+    if (searchBox) {
+      console.log('searchBox Ref is created');
+    }
+  }, [searchBox]);
+
 
   if (loadError) {
     return <div>Error loading Google Maps API</div>;
@@ -113,22 +140,24 @@ const MapAutocomplete = ({ updateAddressInfo }) => {
             >
               <input
                 type="text"
-                placeholder="  Enter Address" 
-                className='search-bar'                                 
+                placeholder="Enter Address" 
+                className='search-bar'      
+                style={{paddingLeft:"10px"}}                           
               />
             </StandaloneSearchBox>
           </div>
           <div id='map-autocomp-col' style={{flex:"1.5"}}>
             <input 
               type='text' 
-              placeholder='  Unit'
+              placeholder='Unit'
               className='search-bar'   
               value={unit}
               onChange={(e) => {
-                updateAddress("unit", e.target.value);
-                setUnit(e.target.value);
+                updateNewAddressInfo("unit", e.target.value);
+                setUnit(e.target.value);                
               }} 
               onKeyDown={handleKeyStroke}
+              style={{paddingLeft:"10px"}}    
             />   
           </div>  
           <div id='map-autocomp-col' style={{flex:"0.5"}}>

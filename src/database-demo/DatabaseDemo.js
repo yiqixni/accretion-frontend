@@ -1,21 +1,36 @@
 import { useState } from 'react';
-import MapAutocomplete from './MapAutocomplete.js'; 
-import DatabaseFetchAccretionDB from './DatabaseFetchAccretionDB.js';
-import DatabaseFetchAttom from './DatabaseFetchAttom.js';
-// import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js';
+import MapAutocomplete from './google-map-api/MapAutocomplete.js'; 
+import DatabaseFetchAccretionDB from './accretion-backend-api/DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
 
-import ContactUs from '../contact-us/ContactUs.js';
+import Loading from './loading-error-handling/Loading.js';
+import Error from './loading-error-handling/Error.js';
+// import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
+import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3.js';
+import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
+import Share from "./share-save-edit/Share.js";
+import Edit from "./share-save-edit/Edit.js";
+import Save from "./share-save-edit/Save.js";
+import DatabasePostPNG from './accretion-backend-api/DatabasePostPNG.js';
 
 export default function DatabaseDemo () {
+    ////////// State Hooks //////////////
 
+    // states for Google Maps API
+    const [addressInfo, setAddressInfo] = useState(null); 
+    // json data from backend API
+    const [dataJSON, setDataJSON] = useState(null); 
+    // responseStatus false if waiting for API to get back, true if get back from API
+    const [responseStatus, setResponseStatus] = useState(false);
+    // fetchStatus true if the API response is good, false if bad
     const [fetchStatus, setFetchStatus] = useState(null); 
-    const [addressInfo, setAddressInfo] = useState(null);
+    // dataPNG for deed visual static image
+    const [dataPNG, setDataPNG] = useState(null); 
+    // shareLink for sharing the deed visual 
+    const [shareLink, setShareLink] = useState(null);    
+    // linkPNG: link to the static deed visual from backend 
+    const [linkPNG, setLinkPNG] = useState(null); 
     
-    const updateAddressInfo = (data) => {
-        setAddressInfo(data);
-    } 
-
     const updateFetchStatus = (data) => {
         setFetchStatus(data); 
     }   
@@ -23,7 +38,7 @@ export default function DatabaseDemo () {
     return (
         <div className='database-demo'>
             <div className='row'> 
-                <div id='title'> Accretion Database Demo </div>
+                <div id='title'> Accretion Database </div>
             </div>  
 
             <div className='row'>
@@ -37,71 +52,52 @@ export default function DatabaseDemo () {
             </div>
 
             <div className='row' style={{marginBottom:"8svh"}}>                
-                <MapAutocomplete updateAddressInfo={updateAddressInfo} id='search-bar'/>                                                
+                <MapAutocomplete addressInfo={addressInfo} 
+                                 setAddressInfo={setAddressInfo} 
+                                 setResponseStatus={setResponseStatus} 
+                                 setDataPNG={setDataPNG} 
+                                 setDataJSON={setDataJSON}
+                                 setFetchStatus={setFetchStatus}
+                                 setLinkPNG={setLinkPNG}
+                                 id='search-bar'
+                />                                                
             </div>
 
             {addressInfo && (                   
                 <div>                     
-                    <div className='row' style={{marginBottom:"8svh"}}>
-                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} />                        
-                    </div>                                       
-                    {fetchStatus ? (
-                        <div className='row'> 
-                            <div className='text'> 
-                                We are in the process building the best database for deeds and titles.
-                                <br/> 
-                                To perfect our database, 
-                                we are working with local county registry, 
-                                real estate attorneys, 
-                                title companies. 
-                                <br/>
-                                Contact us to learn more. 
-                            </div>
-                            <div>
-                                <ContactUs />
-                            </div>
-                        </div>
-                    ) : (
-                        <div className='row'> 
-                        <div className='text'> 
-                            We are having trouble finding your property. Please enter the unit number if it is a multi-family home. 
-                            <br/>
-                            Contact us, our support team will get back to you shortly.                            
-                        </div>
-                        <div>
-                            <ContactUs />
-                        </div>
-                    </div>
+                    <div>
+                        <DatabaseFetchAccretionDB   addressInfo={addressInfo} 
+                                                    setFetchStatus={updateFetchStatus} 
+                                                    setResponseStatus={setResponseStatus} 
+                                                    setDataJSON={setDataJSON} 
+                                                    setShareLink={setShareLink}                                                    
+                        />                        
+                    </div>        
+                    {!responseStatus && (
+                        <Loading/>
                     )}
-                    
-                    
-                    
                 </div>
-            )}                             
-
-            {/* <div className='row'>
-                <div id='small-title'> 
-                    The Best in Class Visualization Tool for Title Abstraction 
-                </div> 
-            </div>            
-            <div className='row'>    
-
-                <div className='text'>
-                    Experience the title abstract visual for the property located in 22 Dell St. Somerville, MA. 
-                    <br/>
-                    Just click on the visual to inspect the title abstract detail. 
-                    <br/>
-                    Power by the best visualization tool from Accretion,                         
-                    you can effortlessly inteprete the title abstract.                                                                                                                         
-                </div>                    
-                
-            </div>
-            
-
-            <div className='row'>                
-                <CreateDeedVisualAttom visualWidth={600} />
-            </div>                         */}
-                                                                                        
+            )}
+            {(dataJSON && responseStatus) && (
+                <div className='row'>
+                    <CreateDeedVisualD3 dataJson={dataJSON}/>
+                    <CreateDeedVisualPNG dataJson={dataJSON} setDataPNG={setDataPNG}/> 
+                    {dataPNG && (
+                        <DatabasePostPNG dataPNG={dataPNG} dataJSON={dataJSON} setLinkPNG={setLinkPNG}/>
+                    )}                  
+                    <div className="share-save-edit"> 
+                        <div className="row">                                                        
+                            <Share shareLink={shareLink} linkPNG={linkPNG} />
+                            <Save />
+                            <Edit />                                                                            
+                        </div>                    
+                    </div> 
+                </div>
+            )}
+            {(fetchStatus == false) && (
+                <Error/>
+            )}
+                  
         </div>
     )
 }

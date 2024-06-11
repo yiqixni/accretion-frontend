@@ -1,103 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-
-import dataJson from './json-sample-22-dell.json';
-// import dataJson from './json-sample-500-mohawk.json';
+import ConvertSVG2PNG from './ConvertSVG2PNG';
 
 import '../DatabaseDemo.css'
 
-const CreateDeedVisualAttom = ({visualWidth}) => {
-    const data = [
-        {
-            "owner": "Alan & Patricia Ball", 
-            "start": "1985",
-            "end": "2021", 
-            "deed": {
-                "date": "1985-10-02T00:00:00",
-                "book_page": "16475-327",
-            },
-            "mortgage": [
-                {
-                    "date": "1985-10-02T00:00:00",
-                    "book_page": "17878-285",
-                },
-                {
-                    "date": "1998-07-15T00:00:00",
-                    "book_page": "28840-203",
-                },
-                {
-                    "date": "2001-07-09T00:00:00",
-                    "book_page": "33217-37",
-                },
-                {
-                    "date": "2003-01-22T00:00:00",
-                    "book_page": "37743-485",
-                }
-            ],
-            "discharge": [
-                {
-                    "date": "1985-10-02T00:00:00", 
-                    "book_page": "16475-324", 
-                },
-                {
-                    "date": "2013-03-19T00:00:00", 
-                    "book_page": "61424-57",
-                },
-                {
-                    "date": "2021-11-30T00:00:00",
-                    "book_page": "79245-123",
-                }, 
-            ]
-        },
-        {
-            "owner": "Yiqi Ni",
-            "start": "2021",
-            "end": "2024", 
-            "deed": {
-                "date": "2021-12-03T00:00:00",
-                "book_page": "79280-456",
-            },
-            "mortgage": [
-                {
-                    "date": "2022-03-22T00:00:00",
-                    "book_page": "79859-460",
-                },
-            ],
-            "discharge": [
-                {
-                    "date": "2021-12-14T00:00:00",
-                    "book_page": "79345-485",
-                }, 
-            ]
-        },
-    ];    
-
-    const svgRef = useRef();
+const CreateDeedVisualAccretionDB = ({dataJson, setDataPNG}) => {                
+    const dataATTOM = dataJson.property[0].salehistory;    
+    const dataAddress = dataJson.property[0].address.oneLine;
+    const svgRef = useRef(); // ref for the svg graph 
     const tooltipRef = useRef(null); // Ref for the tooltip
-
+    
     const height = 300; 
-    // const width = 800;
+    const width = Math.min(window.outerWidth * 0.9, 600);
 
-    if (!visualWidth) {
-        visualWidth = 800;
-    }
-    const width = visualWidth; 
-
-    const borderRadiusOff = 10; 
-    const borderRadiusOn = 20; 
+    const borderRadiusOff = 10;     
 
     const heightRect = 50;
     const heightTitle = 10; 
     const marginTopBottom = 10;
 
     const fillOpacityOff = 0.6; 
-    const fillOpacityOn = 1;     
-
-    // const yearTotal = data[data.length-1].end - data[0].start; 
+    const fillOpacityOn = 1;         
     
-    const yearStart = new Date(dataJson.property[0].salehistory.slice(-1)[0].saleTransDate).getFullYear(); 
-    // const yearEnd = new Date(dataJson.property[0].salehistory[0].saleTransDate).getFullYear(); 
-    const yearEnd = new Date().getFullYear();
+    const yearEnd = new Date().getFullYear();    
+    // define the starting year 
+    let yearStart = null;     
+    for (let i = dataATTOM.length - 1; i >= 0; i--) {        
+        if ("saleTransDate" in dataATTOM[i]) {
+            yearStart = new Date(dataATTOM[i].saleTransDate).getFullYear(); 
+            break;
+        }
+    };
+    // if yearStart is not define, start use even year space from yearEnd 
+    if (!yearStart) {
+        console.log("yearStart not defined ", yearStart); 
+        yearStart = yearEnd - dataATTOM.length;
+    }        
+    
     const yearTotal = yearEnd - yearStart;     
 
     const gapDeed = 10;     
@@ -121,12 +60,16 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
     const widthScale = d3.scaleLinear()
                             .domain([0, yearTotal])
                             .range([0, width-widthMortgage]); 
+    
 
     useEffect(() => {        
-        // create svg canvas for the deed record
+        // create svg canvas for the deed record        
         const svg = d3.select(svgRef.current)
                         .attr("height", height) 
                         .attr("width", width) 
+        
+        // clear previous svg content
+        svg.selectAll("*").remove();
         
         svg.append("rect") // append gray background                        
             .attr("height", height)
@@ -155,7 +98,8 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
             tooltip.style('visibility', 'visible') // Show the tooltip
                     .html(text.replace(/\n/g, '<br/>'))
                     .style("font-family", "monospace")
-                    .style("font-size", "12pt");
+                    .style("font-size", "12pt")
+                    .style("max-width", `${width}px`);
                     
         };
         
@@ -167,19 +111,13 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
             obj
                 .attr("stroke", "gray")
                 .attr("stroke-width", 2)
-                .attr("fill-opacity", fillOpacityOn)
-                // .attr("rx", borderRadiusOn)
-                // .attr("ry", borderRadiusOn)
-                
+                .attr("fill-opacity", fillOpacityOn);                
         }
 
         const showRectOff = (obj) => {
             obj                
                 .attr("stroke-width", 0)
-                .attr("fill-opacity", fillOpacityOff)
-                // .attr("rx", borderRadiusOff)
-                // .attr("ry", borderRadiusOff)
-                
+                .attr("fill-opacity", fillOpacityOff);                
         }
 
         // Function to show the image overlay
@@ -228,13 +166,11 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
             .text("others"); // set the text content                 
        
 
-        // loop through ATTOM data 
-        console.log("ATTOM json data");        
-        let dataATTOM = dataJson.property[0].salehistory; 
+        // loop through ATTOM data         
         let lastDeed;
         for (let i=0; i < dataATTOM.length; i++) {
             // mortgage info             
-            if (dataATTOM[i].amount.saleTransType == "Stand Alone Finance") {                                                                                      
+            if (dataATTOM[i].amount.saleTransType == "Stand Alone Finance") {                                                                                                      
                 let xMortgage = widthScale(
                     new Date(dataATTOM[i].saleTransDate).getFullYear() - yearStart 
                 );                     
@@ -278,12 +214,17 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
                     });     
             }
             // deed resale info
-            else if (dataATTOM[i].amount.saleTransType == "Resale") {
-                console.log("seller ", dataATTOM[i].sellerName);
-                console.log("buyer ", dataATTOM[i].buyerName);
-                console.log("transaction date ", dataATTOM[i].saleTransDate)
-                console.log("transaction amount ", dataATTOM[i].amount.saleAmt)
-                let deedWidth;
+            else if (dataATTOM[i].amount.saleTransType == "Resale") {                                                                              
+                const trans_amount_valid = ("saleAmt" in dataATTOM[i].amount) ? true : false;
+                let trans_date_valid; 
+                if ("saleTransDate" in dataATTOM[i]) { 
+                    trans_date_valid = true; 
+                } else {
+                    trans_date_valid = false;
+                    dataATTOM[i].saleTransDate = `${yearEnd - i - 1}-01-01`;
+                }                
+
+                let deedWidth;                
                 if (lastDeed) {
                     deedWidth = widthScale(
                         lastDeed - new Date(dataATTOM[i].saleTransDate).getFullYear() 
@@ -294,7 +235,12 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
                         yearEnd - new Date(dataATTOM[i].saleTransDate).getFullYear() 
                    ); 
                     lastDeed = new Date(dataATTOM[i].saleTransDate).getFullYear(); 
-                }                
+                };             
+                deedWidth = deedWidth - width/200; // shrink the width to preserve a gap
+                if (!trans_date_valid) {
+                    deedWidth = widthMortgage;
+                };
+
                 let xDeed;
                 xDeed = widthScale(
                     new Date(dataATTOM[i].saleTransDate).getFullYear() - yearStart 
@@ -303,9 +249,9 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
                 const rectDeed = svg
                         .append("rect")                    
                         .attr("class", "link rect-normal")
-                        .attr("x", xDeed)
+                        .attr("x", xDeed + width/200)
                         .attr("y", yDeed)                    
-                        .attr("height", heightDeed)
+                        .attr("height", trans_date_valid ? heightDeed : heightDeed/2)
                         .attr("width", deedWidth) // Transition to the final width
                         .attr("fill", colorDeed)
                         .attr("rx", borderRadiusOff)
@@ -321,8 +267,8 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
                         showTooltip( // Show deed details on mouseover
                             "buyer: " + dataATTOM[i].buyerName + "\n" +
                             "seller: " + dataATTOM[i].sellerName + "\n" + 
-                            "transaction date: " + dataATTOM[i].saleTransDate + "\n" +                         
-                            "amount: " + (dataATTOM[i].amount.saleAmt ? (dataATTOM[i].amount.saleAmt).toLocaleString('en-US', {
+                            "transaction date: " + (trans_date_valid ? dataATTOM[i].saleTransDate : "NA") + "\n" +                         
+                            "amount: " + (trans_amount_valid ? (dataATTOM[i].amount.saleAmt).toLocaleString('en-US', {
                                 style: 'currency',
                                 currency: 'USD',
                                 minimumFractionDigits: 0, // Specify minimum digits after decimal point
@@ -379,16 +325,18 @@ const CreateDeedVisualAttom = ({visualWidth}) => {
                     });     
             }
         }
-                  
-    }, [visualWidth]);
+
+        ConvertSVG2PNG(svgRef.current, setDataPNG, dataAddress);
+        
+    }, [dataJson]);
 
     return (
-        <div>
-            <svg ref={svgRef} width={width} height={height}></svg>
-            <div ref={tooltipRef}></div> {/* Render the tooltip */}
+        <div>            
+            <svg ref={svgRef} width={width} height={height} ></svg>                        
+            <div ref={tooltipRef} style={{textAlign:"left"}}></div> {/* Render the tooltip */}
         </div>
     );
 };
 
-export default CreateDeedVisualAttom;
+export default CreateDeedVisualAccretionDB;
 

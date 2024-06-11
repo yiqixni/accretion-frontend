@@ -7,7 +7,10 @@ import MessageUsComponent from './MessageUsComponent';
 
 import './ContactUs.css';
 
-export default function ContactUs () {
+export default function ContactUs ({ message }) {
+    if (!message) {
+        message = "Please let us know how we can assist you. Your feedback allows us to build a modern database and marketplace for a more efficient housing market."
+    }
     const containerRef = useRef(null); 
     const [fontSize, setFontSize] = useState(16); // Initial font size
     const [containerWidth, setContainerWidth] = useState(0); // Initial container width
@@ -58,12 +61,11 @@ export default function ContactUs () {
             
             <div className='row'>
                 <div id='text'>
-                    Please let us know how we can assist you. 
-                    Your feedback allows us to build a modern database and marketplace for a more efficient housing market.
+                    {message}
                 </div>
             </div> 
 
-            <div className='row' style={{marginBottom: "10svh"}}>
+            <div className='row' style={{marginBottom: "0svh"}}>
                 <MessageUsComponent/>
             </div>
 

@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-
-// import dataJson from './json-sample-22-dell.json';
-// import dataJson from './json-sample-500-mohawk.json';
+import ConvertSVG2PNG from './ConvertSVG2PNG';
 
 import '../DatabaseDemo.css'
 
-const CreateDeedVisualAttomAPI = ({visualWidth, dataJson}) => {                
+const CreateDeedVisualAccretionDB = ({dataJson, setDataPNG}) => {                
     const dataATTOM = dataJson.property[0].salehistory;    
+    const dataAddress = dataJson.property[0].address.oneLine;
     const svgRef = useRef(); // ref for the svg graph 
     const tooltipRef = useRef(null); // Ref for the tooltip
     
@@ -167,8 +166,7 @@ const CreateDeedVisualAttomAPI = ({visualWidth, dataJson}) => {
             .text("others"); // set the text content                 
        
 
-        // loop through ATTOM data 
-        // console.log("ATTOM json data");                
+        // loop through ATTOM data         
         let lastDeed;
         for (let i=0; i < dataATTOM.length; i++) {
             // mortgage info             
@@ -215,7 +213,6 @@ const CreateDeedVisualAttomAPI = ({visualWidth, dataJson}) => {
                             .attr("ry", borderRadiusOff)
                     });     
             }
-
             // deed resale info
             else if (dataATTOM[i].amount.saleTransType == "Resale") {                                                                              
                 const trans_amount_valid = ("saleAmt" in dataATTOM[i].amount) ? true : false;
@@ -328,16 +325,18 @@ const CreateDeedVisualAttomAPI = ({visualWidth, dataJson}) => {
                     });     
             }
         }
-                  
-    }, [visualWidth, dataJson]);
+
+        ConvertSVG2PNG(svgRef.current, setDataPNG, dataAddress);
+        
+    }, [dataJson]);
 
     return (
-        <div style={{margin:"0",padding:"0"}}>            
-            <svg ref={svgRef} width={width} height={height} ></svg>            
+        <div>            
+            <svg ref={svgRef} width={width} height={height} ></svg>                        
             <div ref={tooltipRef} style={{textAlign:"left"}}></div> {/* Render the tooltip */}
         </div>
     );
 };
 
-export default CreateDeedVisualAttomAPI;
+export default CreateDeedVisualAccretionDB;
 
