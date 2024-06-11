@@ -21,7 +21,7 @@ export default function DatabaseDemoView () {
     const location = useLocation(); 
     const [queryString, setQueryString] = useState(null);     
     const [dataJSON, setDataJSON] = useState(null);
-    const [pngURL, setPngURL] = useState(null);
+    const [linkPNG, setLinkPNG] = useState(null);
     const [loading, setLoading] = useState(true); 
     const [fetchStatus, setFetchStatus] = useState(null);     
         
@@ -45,7 +45,7 @@ export default function DatabaseDemoView () {
             if (response.ok) {
                 const data = await response.json();                                            
                 setDataJSON(data.data);     
-                setPngURL(data.imageLink);
+                setLinkPNG(data.imageLink);
                 setFetchStatus(true);
             } else {
                 console.error("Failed to fetch data: ", response.statusText); 
@@ -71,9 +71,9 @@ export default function DatabaseDemoView () {
 
     return (
         <div className='database-demo'>
-            {/* {fetchStatus && (
-                <TwitterCard propertyData={propertyData} />
-            )} */}
+            {fetchStatus && (
+                <TwitterCard dataJSON={dataJSON} linkPNG={linkPNG} shareLink={shareLink}/>
+            )}
             <div className='row'>
                 <div id='title'>
                     Accretion Database
@@ -89,7 +89,7 @@ export default function DatabaseDemoView () {
                     </div>
                     <div className="share-save-edit"> 
                         <div className="row">                            
-                            <Share shareLink={shareLink} linkPNG={pngURL}/>
+                            <Share shareLink={shareLink} linkPNG={linkPNG}/>
                             <Save />
                             <Edit />                                                                            
                         </div>        
