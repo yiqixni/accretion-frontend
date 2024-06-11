@@ -58,6 +58,7 @@ export default function DatabaseDemo () {
                                  setDataPNG={setDataPNG} 
                                  setDataJSON={setDataJSON}
                                  setFetchStatus={setFetchStatus}
+                                 setLinkPNG={setLinkPNG}
                                  id='search-bar'
                 />                                                
             </div>
@@ -69,7 +70,7 @@ export default function DatabaseDemo () {
                                                     setFetchStatus={updateFetchStatus} 
                                                     setResponseStatus={setResponseStatus} 
                                                     setDataJSON={setDataJSON} 
-                                                    setShareLink={setShareLink}
+                                                    setShareLink={setShareLink}                                                    
                         />                        
                     </div>        
                     {!responseStatus && (

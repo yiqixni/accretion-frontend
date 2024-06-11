@@ -9,7 +9,7 @@ const API_key_google_maps = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const libraries = ['places'];
 
-const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDataPNG, setDataJSON, setFetchStatus }) => {
+const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDataPNG, setDataJSON, setFetchStatus, setLinkPNG }) => {
   // searchBox state is reference to StandAloneSearchBox 
   const [searchBox, setSearchBox] = useState(null);  
 
@@ -97,6 +97,7 @@ const MapAutocomplete = ({ addressInfo, setAddressInfo, setResponseStatus, setDa
       setFetchStatus(null);
       setDataPNG(null);
       setDataJSON(null); 
+      // setLinkPNG(null);
     } else {
       console.warn("MapAutoComplete: search button clicked, enter a new address for search.");
     }
