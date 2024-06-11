@@ -6,7 +6,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 
 import "../../overlay/overlay.css"
 
-export default function Share ({shareLink, dataPNG}) {
+export default function Share ({shareLink, dataPNG, linkPNG}) {
     
     const [showOverlay, setShowOverlay] = useState(false);
     const [copied, setCopied] = useState(false);
@@ -77,7 +77,12 @@ export default function Share ({shareLink, dataPNG}) {
                         </div>
 
                         <div className="row"> 
-                            <img src={dataPNG} alt="Data" />
+                            {linkPNG ? (
+                                <img src={linkPNG} alt="Data" />
+                                ):(
+                                <img src={dataPNG} alt="Data" />
+                                )}
+                            {/* <img src={dataPNG} alt="Data" /> */}
                         </div>
 
                         <div className="row" >

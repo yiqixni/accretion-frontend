@@ -14,18 +14,16 @@ import scrollToTop from '../helper/scrollToTop.js';
 
 import './DatabaseDemo.css'
 
-// const url_accretionDB_getDataView = process.env.REACT_APP_BACKEND_PROD + "/api/database-visualization/get-data-view/";
-const url_accretionDB_getDataView = "https://backend-1.accretion.life/api/database-visualization/get-data/";
+const url_accretionDB_getDataView = process.env.REACT_APP_BACKEND_DOMAIN + "/api/database-visualization/get-data-view/";
+
 
 export default function DatabaseDemoView () {
     const location = useLocation(); 
     const [queryString, setQueryString] = useState(null);     
     const [dataJSON, setDataJSON] = useState(null);
-    const [propertyData, setPropertyData] = useState(null);
+    const [pngURL, setPngURL] = useState(null);
     const [loading, setLoading] = useState(true); 
-    const [fetchStatus, setFetchStatus] = useState(null); 
-    const [dataPNG, setDataPNG] = useState();
-
+    const [fetchStatus, setFetchStatus] = useState(null);     
 
     const getDataHandler = async (event) => { //API call to get data from accretion-backend
         if (event) {
@@ -44,9 +42,9 @@ export default function DatabaseDemoView () {
             setLoading(false);
             if (response.ok) {
                 const data = await response.json();      
-                console.log("dataJSON=", data);           
-                // setPropertyData(data);
-                setDataJSON(data);
+                // console.log("dataJSON=", data);                           
+                setDataJSON(data.data);     
+                setPngURL(data.imageLink);
                 setFetchStatus(true);
             } else {
                 console.error("Failed to fetch data: ", response.statusText); 
@@ -68,8 +66,7 @@ export default function DatabaseDemoView () {
     useEffect(() => {
         if (queryString) {
             getDataHandler(); 
-        }
-        // setLoading(false);
+        }        
     }, [queryString])
 
     return (
@@ -92,7 +89,7 @@ export default function DatabaseDemoView () {
                     </div>
                     <div className="share-save-edit"> 
                         <div className="row">
-                            <Share shareLink={null} dataPNG={null} />
+                            <Share shareLink={null} dataPNG={null} linkPNG={pngURL}/>
                             <Save />
                             <Edit />                                                                            
                         </div>        

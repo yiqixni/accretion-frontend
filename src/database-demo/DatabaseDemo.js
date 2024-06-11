@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import MapAutocomplete from './google-map-api/MapAutocomplete.js'; 
 import DatabaseFetchAccretionDB from './accretion-backend-api/DatabaseFetchAccretionDB.js'; // fetch data from accretion-backend
-import Lottie from 'react-lottie';
+
 import Loading from './loading-error-handling/Loading.js';
 import Error from './loading-error-handling/Error.js';
 // import CheckoutFormStripe from '../payment-stripe/CheckoutFormStripe.js'; 
 
-import AnimationDatabase from "../company/animation-database.json"
 import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3.js';
 import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
 import Share from "./share-save-edit/Share.js";
@@ -14,14 +13,7 @@ import Edit from "./share-save-edit/Edit.js";
 import Save from "./share-save-edit/Save.js";
 import DatabasePostPNG from './accretion-backend-api/DatabasePostPNG.js';
 
-const animationOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: AnimationDatabase,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }    
-};
+
 
 export default function DatabaseDemo () {
     ////////// State Hooks //////////////
@@ -47,7 +39,7 @@ export default function DatabaseDemo () {
     return (
         <div className='database-demo'>
             <div className='row'> 
-                <div id='title'> Accretion Database Demo </div>
+                <div id='title'> Accretion Database </div>
             </div>  
 
             <div className='row'>

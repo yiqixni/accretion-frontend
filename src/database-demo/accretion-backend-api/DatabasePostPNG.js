@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";  
 
-const url_accretionDB_postPNG = "https://backend-1.accretion.life/api/database-visualization/post-png/";
+
+const url_accretionDB_postPNG = process.env.REACT_APP_BACKEND_DOMAIN + "/api/database-visualization/post-png/"; 
 
 export default function DatabasePostPNG ({ dataPNG, dataJSON }) {
     
