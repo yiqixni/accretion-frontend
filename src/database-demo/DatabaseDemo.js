@@ -57,6 +57,7 @@ export default function DatabaseDemo () {
                                  setResponseStatus={setResponseStatus} 
                                  setDataPNG={setDataPNG} 
                                  setDataJSON={setDataJSON}
+                                 setFetchStatus={setFetchStatus}
                                  id='search-bar'
                 />                                                
             </div>
