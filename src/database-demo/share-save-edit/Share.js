@@ -3,11 +3,10 @@ import { useState, useRef, useEffect } from "react";
 import { FiShare } from "react-icons/fi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
-
+import ImageLoading from "../../helper/ImageLoading";
 import "../../overlay/overlay.css"
 
-export default function Share ({shareLink, dataPNG, linkPNG}) {
-    
+export default function Share ({shareLink, linkPNG}) {    
     const [showOverlay, setShowOverlay] = useState(false);
     const [copied, setCopied] = useState(false);
     const overlayRef = useRef(null);
@@ -76,19 +75,14 @@ export default function Share ({shareLink, dataPNG, linkPNG}) {
                             </div> 
                         </div>
 
-                        <div className="row"> 
-                            {linkPNG ? (
-                                <img src={linkPNG} alt="Data" />
-                                ):(
-                                <img src={dataPNG} alt="Data" />
-                                )}
-                            {/* <img src={dataPNG} alt="Data" /> */}
+                        <div className="row">                             
+                            {/* <img src={linkPNG} alt="Data" /> */}
+                            <ImageLoading imageUrl={linkPNG} altText={"static deed visual"}/>
                         </div>
 
-                        <div className="row" >
+                        <div className="row">
                             <div className="column" style={{flex:"6"}}>
-                                <input 
-                                    // style={{width:"100%"}}
+                                <input                                     
                                     type="text" 
                                     value={shareLink} 
                                     readOnly 

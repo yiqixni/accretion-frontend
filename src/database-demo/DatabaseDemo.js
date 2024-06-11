@@ -13,8 +13,6 @@ import Edit from "./share-save-edit/Edit.js";
 import Save from "./share-save-edit/Save.js";
 import DatabasePostPNG from './accretion-backend-api/DatabasePostPNG.js';
 
-
-
 export default function DatabaseDemo () {
     ////////// State Hooks //////////////
 
@@ -30,7 +28,8 @@ export default function DatabaseDemo () {
     const [dataPNG, setDataPNG] = useState(null); 
     // shareLink for sharing the deed visual 
     const [shareLink, setShareLink] = useState(null);    
-    
+    // linkPNG: link to the static deed visual from backend 
+    const [linkPNG, setLinkPNG] = useState(null); 
     
     const updateFetchStatus = (data) => {
         setFetchStatus(data); 
@@ -82,11 +81,11 @@ export default function DatabaseDemo () {
                     <CreateDeedVisualD3 dataJson={dataJSON}/>
                     <CreateDeedVisualPNG dataJson={dataJSON} setDataPNG={setDataPNG}/> 
                     {dataPNG && (
-                        <DatabasePostPNG dataPNG={dataPNG} dataJSON={dataJSON} />
+                        <DatabasePostPNG dataPNG={dataPNG} dataJSON={dataJSON} setLinkPNG={setLinkPNG}/>
                     )}                  
                     <div className="share-save-edit"> 
-                        <div className="row">
-                            <Share shareLink={shareLink} dataPNG={dataPNG} />
+                        <div className="row">                                                        
+                            <Share shareLink={shareLink} linkPNG={linkPNG} />
                             <Save />
                             <Edit />                                                                            
                         </div>                    
@@ -96,53 +95,7 @@ export default function DatabaseDemo () {
             {(fetchStatus == false) && (
                 <Error/>
             )}
-            
-
-            {/* {addressInfo && (                   
-                <div>                     
-                    <div className='row' style={{marginBottom:"8svh"}}>
-                        <DatabaseFetchAccretionDB addressInfo={addressInfo} setFetchStatus={updateFetchStatus} setResponseStatus={setResponseStatus} />                        
-                    </div>        
-                    {!responseStatus && (
-                        <div className='row'>
-                            <div id='animation' style={{maxWidth:"300px"}}>
-                                <Lottie options={animationOptions}/>
-                            </div>  
-                        </div>
-                    )}
-                    {fetchStatus == true ? (
-                        <div className='row'> 
-                            <div className='text'> 
-                                We are in the process building the best database for deeds and titles.
-                                <br/> 
-                                To perfect our database, 
-                                we are working with local county registry, 
-                                real estate attorneys, 
-                                title companies. 
-                                <br/>
-                                Contact us to learn more. 
-                            </div>
-                            <div>
-                                <ContactUs />
-                            </div>
-                        </div>
-                    ) : (
-                        <div className='row'> 
-                        <div className='text'> 
-                            We are having trouble finding your property. Please enter the unit number if it is a multi-family home. 
-                            <br/>
-                            Contact us, our support team will get back to you shortly.                            
-                        </div>
-                        <div>
-                            <ContactUs />
-                        </div>
-                    </div>
-                    )}
-                    
-                    
-                    
-                </div>
-            )}                                                                                                                                  */}
+                  
         </div>
     )
 }

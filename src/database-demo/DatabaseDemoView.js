@@ -15,7 +15,7 @@ import scrollToTop from '../helper/scrollToTop.js';
 import './DatabaseDemo.css'
 
 const url_accretionDB_getDataView = process.env.REACT_APP_BACKEND_DOMAIN + "/api/database-visualization/get-data-view/";
-
+const url_shareLink_domain = process.env.REACT_APP_HOST_DOMAIN;
 
 export default function DatabaseDemoView () {
     const location = useLocation(); 
@@ -24,6 +24,8 @@ export default function DatabaseDemoView () {
     const [pngURL, setPngURL] = useState(null);
     const [loading, setLoading] = useState(true); 
     const [fetchStatus, setFetchStatus] = useState(null);     
+        
+    const shareLink = url_shareLink_domain + location.pathname + location.search;     
 
     const getDataHandler = async (event) => { //API call to get data from accretion-backend
         if (event) {
@@ -41,8 +43,7 @@ export default function DatabaseDemoView () {
             console.log("DatabaseDemoView: finish the API call to backend.");
             setLoading(false);
             if (response.ok) {
-                const data = await response.json();      
-                // console.log("dataJSON=", data);                           
+                const data = await response.json();                                            
                 setDataJSON(data.data);     
                 setPngURL(data.imageLink);
                 setFetchStatus(true);
@@ -57,8 +58,7 @@ export default function DatabaseDemoView () {
         }
     } 
 
-    useEffect(() => {
-        console.log("location.search=", location.search);
+    useEffect(() => {        
         setQueryString(location.search); 
 
     }, [location.search]);
@@ -89,7 +89,7 @@ export default function DatabaseDemoView () {
                     </div>
                     <div className="share-save-edit"> 
                         <div className="row">
-                            <Share shareLink={null} dataPNG={null} linkPNG={pngURL}/>
+                            <Share shareLink={shareLink} linkPNG={pngURL}/>
                             <Save />
                             <Edit />                                                                            
                         </div>        

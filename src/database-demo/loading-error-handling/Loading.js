@@ -13,8 +13,8 @@ const animationOptions = {
 export default function Loading () {
 
     return (
-        <div className='row'>
-            <div id='animation' style={{maxWidth:"300px"}}>
+        <div className='row'>            
+            <div id='animation' style={{width:"80%", maxWidth:"400px"}}>
                 <div> Loading AccretionDB... </div>
                 <Lottie options={animationOptions}/>
             </div>  

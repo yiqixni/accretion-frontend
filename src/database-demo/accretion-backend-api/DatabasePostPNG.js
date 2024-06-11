@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 const url_accretionDB_postPNG = process.env.REACT_APP_BACKEND_DOMAIN + "/api/database-visualization/post-png/"; 
 
-export default function DatabasePostPNG ({ dataPNG, dataJSON }) {
+export default function DatabasePostPNG ({ dataPNG, dataJSON, setLinkPNG }) {
     
     if (dataPNG == null || dataJSON == null) {
         console.error("DatabasePostPNG: dataPNG or dataJSON is null"); 
@@ -31,8 +31,8 @@ export default function DatabasePostPNG ({ dataPNG, dataJSON }) {
             }); 
             console.log("DatabasePostPNG: finish API call to AccretionDB")
             if (response.ok) {
-                const data = await response.json(); 
-                console.log("===database visual PNG link===", data); 
+                const data = await response.json();                 
+                setLinkPNG(data.imageLink); 
             } else {
                 console.error("Failed upload data visual to backend"); 
             }            
