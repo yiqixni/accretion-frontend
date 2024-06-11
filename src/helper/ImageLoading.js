@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Loading from '../database-demo/loading-error-handling/Loading';
 
 function ImageLoading({ imageUrl, altText }) {
+    // console.log("ImageLoading: imageURL=", imageUrl);
     const [loading, setLoading] = useState(true);    
 
     // Handler for image load
@@ -19,9 +20,9 @@ function ImageLoading({ imageUrl, altText }) {
         <div >
             {loading && (
                 <Loading />
-            )}
+            )}            
             <img
-                src={imageUrl}
+                src={imageUrl}                
                 alt={altText}
                 onLoad={handleImageLoad}
                 onError={handleImageError}

@@ -88,7 +88,7 @@ export default function DatabaseDemoView () {
                         <CreateDeedVisualD3 dataJson={dataJSON} /> 
                     </div>
                     <div className="share-save-edit"> 
-                        <div className="row">
+                        <div className="row">                            
                             <Share shareLink={shareLink} linkPNG={pngURL}/>
                             <Save />
                             <Edit />                                                                            

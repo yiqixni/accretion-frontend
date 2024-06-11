@@ -12,6 +12,7 @@
 }
 
 .overlay-share-content, .overlay-contact-us-content {    
+    min-width: 60svw;
     max-height: 90svh;
     background: white;
     padding: 20px;
