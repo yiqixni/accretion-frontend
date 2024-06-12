@@ -30,6 +30,10 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
         const canvasHeight = image.height + header_height;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
+        
+        // Fill the canvas with a white background
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw the original image onto the canvas
         ctx.drawImage(image, 0, header_height);
@@ -53,6 +57,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
             
             let fontSize = 20; // Initial font size
             ctx.font = `${fontSize}px Arial`;
+            ctx.fillStyle = 'black';
             let textWidth = ctx.measureText(addressText).width;
             while (textWidth < canvasWidth * 0.8) {
                 fontSize += 1;

@@ -4,16 +4,14 @@ import "../DatabaseDemo.css";
 // API URL for get json data from backend
 const url_accretionDB_getData = process.env.REACT_APP_BACKEND_DOMAIN + "/api/database-visualization/get-data/"; // for local dev testing
 // URL for Database share 
-const url_database_view = process.env.REACT_APP_HOST_DOMAIN + "/database/demo/share/"; 
+const url_database_share = process.env.REACT_APP_HOST_DOMAIN + "/database/demo/share/"; 
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON, setShareLink }) {        
     if (!addressInfo) {
         console.error("DatabaseFetch: addressInfo is null");
         return null;
     }
-    // const [queryString, setQueryString] = useState(null);
-    // const [shareLink, setShareLink] = useState(null); 
-
+    
     const getDataHandler = async (event) => { //API call to get data from accretion-backend 
         if (event) {
             event.preventDefault();
@@ -22,7 +20,7 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
                             `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`;
 
         // set the shareLink
-        setShareLink(url_database_view + queryString); 
+        setShareLink(url_database_share + queryString); 
         
         if (queryString == null) {            
             console.error("DatabaseFetch: queryString is null");

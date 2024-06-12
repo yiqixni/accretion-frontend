@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import CreateDeedVisualD3 from './d3-attom-demo/CreateDeedVisualD3';
-import TwitterCard from './share-save-edit/TwitterCard';
 import Loading from './loading-error-handling/Loading';
 import Error from './loading-error-handling/Error';
 import Share from './share-save-edit/Share';
@@ -25,14 +24,15 @@ export default function DatabaseDemoView () {
     const [loading, setLoading] = useState(true); 
     const [fetchStatus, setFetchStatus] = useState(null);     
         
-    const shareLink = url_shareLink_domain + location.pathname + location.search;     
+    const shareLink = url_shareLink_domain + "/database/demo/share/" + location.search;     
+    // console.log("DatabaseDemoView: ", shareLink)
 
     const getDataHandler = async (event) => { //API call to get data from accretion-backend
         if (event) {
             event.preventDefault();
         }                
         try {
-            console.log("DatabaseDemoView: making an API call to backend...", url_accretionDB_getDataView);
+            console.log("DatabaseDemoView: making an API call to backend...");
             setLoading(true);
             const response = await fetch(                
                 url_accretionDB_getDataView + queryString,
@@ -71,9 +71,6 @@ export default function DatabaseDemoView () {
 
     return (
         <div className='database-demo'>
-            {fetchStatus && (
-                <TwitterCard dataJSON={dataJSON} linkPNG={linkPNG} shareLink={shareLink}/>
-            )}
             <div className='row'>
                 <div id='title'>
                     Accretion Database
