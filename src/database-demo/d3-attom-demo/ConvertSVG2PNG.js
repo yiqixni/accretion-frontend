@@ -21,18 +21,26 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const image = new Image();    
+    const aspectRatioTwitter = 1.91;
+    const png_width = 800;
 
     image.onload = () => {
         // Set canvas dimensions to the image dimensions
-        const header_height = image.height * 0.5; // define header space anchored to the deed graph  
-        const header_width = image.width; 
-        const canvasWidth = image.width;
+        const header_height = png_width / aspectRatioTwitter - image.height; // define header space anchored to the deed graph  
+        const header_width = png_width; 
+        const canvasWidth = png_width;
         const canvasHeight = image.height + header_height;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
+        
+        // Fill the canvas with a white background
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the original image onto the canvas
-        ctx.drawImage(image, 0, header_height);
+        // Draw the original deed visual onto the canvas
+        const imageX = canvas.width / 2 - image.width / 2; 
+        const imageY = header_height;
+        ctx.drawImage(image, imageX, imageY);
 
         // Draw the logo on top of the image
         const logo = new Image();
@@ -40,7 +48,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
 
         logo.onload = () => {            
             const logoAspectRatio = 4; 
-            const logoWidth = header_width * 0.6; // Width of the logo
+            const logoWidth = header_width * 0.38; // Width of the logo
             const logoHeight = logoWidth / logoAspectRatio; // Height of the logo
             const logoX = header_width / 2 - logoWidth / 2; // X position of the logo
             const logoY = 10; // Y position of the logo
@@ -51,17 +59,18 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
             // Adjust font size to fit the text within 80% of canvas width
             const addressText = dataAddress;
             
-            let fontSize = 20; // Initial font size
+            let fontSize = 10; // Initial font size
             ctx.font = `${fontSize}px Arial`;
+            ctx.fillStyle = 'black';
             let textWidth = ctx.measureText(addressText).width;
-            while (textWidth < canvasWidth * 0.8) {
+            while (textWidth < canvasWidth * 0.52) {
                 fontSize += 1;
                 ctx.font = `${fontSize}px Arial`;
                 textWidth = ctx.measureText(addressText).width;
             }
 
             // Draw the adjusted text
-            ctx.fillText(addressText, canvasWidth / 2 - textWidth / 2, header_height*0.8);
+            ctx.fillText(addressText, canvasWidth / 2 - textWidth / 2, logoY + logoHeight * 1.25);
 
             // Convert the canvas to a data URL
             const enhancedDataUrl = canvas.toDataURL('image/png');
