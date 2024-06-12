@@ -63,7 +63,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
             ctx.font = `${fontSize}px Arial`;
             ctx.fillStyle = 'black';
             let textWidth = ctx.measureText(addressText).width;
-            while (textWidth < canvasWidth * 0.6) {
+            while (textWidth < canvasWidth * 0.52) {
                 fontSize += 1;
                 ctx.font = `${fontSize}px Arial`;
                 textWidth = ctx.measureText(addressText).width;
