@@ -20,7 +20,9 @@ export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, 
                             `&address2=${addressInfo.locality}%20${addressInfo.state}%20${addressInfo.zipcode}`;
 
         // set the shareLink
-        setShareLink(url_database_share + queryString); 
+        const encodedQueryString =  `?address1=${encodeURIComponent(addressInfo.street_number)}%20${encodeURIComponent(addressInfo.route)}%20${encodeURIComponent(addressInfo.unit)}` + 
+                                    `&address2=${encodeURIComponent(addressInfo.locality)}%20${encodeURIComponent(addressInfo.state)}%20${addressInfo.zipcode}`;
+        setShareLink(url_database_share + encodedQueryString); 
         
         if (queryString == null) {            
             console.error("DatabaseFetch: queryString is null");
