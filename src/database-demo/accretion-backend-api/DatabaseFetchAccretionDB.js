@@ -3,8 +3,8 @@ import "../DatabaseDemo.css";
 
 // API URL for get json data from backend
 const url_accretionDB_getData = process.env.REACT_APP_BACKEND_DOMAIN + "/api/database-visualization/get-data/"; // for local dev testing
-// URL for Database view 
-const url_database_view = process.env.REACT_APP_HOST_DOMAIN + "/database/demo/view/"; 
+// URL for Database share 
+const url_database_view = process.env.REACT_APP_HOST_DOMAIN + "/database/demo/share/"; 
 
 export default function DatabaseFetchAccretionDB({ addressInfo, setFetchStatus, setResponseStatus, setDataJSON, setShareLink }) {        
     if (!addressInfo) {
