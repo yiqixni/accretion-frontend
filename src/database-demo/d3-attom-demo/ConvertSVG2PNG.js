@@ -50,9 +50,10 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
 
         // Draw the original deed visual onto the canvas
         const imageX = canvas.width / 2 - image_target_width / 2; 
-        const imageY = header_height;
-        // ctx.drawImage(image, imageX, imageY);
-        ctx.drawImage(image, 0, 0, image.width, image.height, imageX, imageY, image_target_width, image_target_height);
+        const imageY = header_height;        
+        ctx.drawImage(image, 0, 0, image.width, image.height, // define the current png size
+            imageX, imageY,                                   // define the starting png location
+            image_target_width, image_target_height);         // define the target png size
 
         // Draw the logo on top of the image
         const logo = new Image();
