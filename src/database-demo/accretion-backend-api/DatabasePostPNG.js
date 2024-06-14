@@ -5,15 +5,16 @@ const url_accretionDB_postPNG = process.env.REACT_APP_BACKEND_DOMAIN + "/api/dat
 
 export default function DatabasePostPNG ({ dataPNG, dataJSON, setLinkPNG }) {
     
-    if (dataPNG == null || dataJSON == null) {
-        console.error("DatabasePostPNG: dataPNG or dataJSON is null"); 
-        return null;
-    }
-
-    const propertyID = dataJSON.status.attomId; 
-
     //API call to POST PNG to accretion-backend 
-    const uploadPNGHandler = async (event) => {                
+    const uploadPNGHandler = async (event) => {        
+        
+        if (dataPNG == null || dataJSON == null) {
+            console.error("DatabasePostPNG: dataPNG or dataJSON is null"); 
+            return null;
+        }
+    
+        const propertyID = dataJSON.status.attomId; 
+        
         if (event) {
             event.preventDefault();
         }    
