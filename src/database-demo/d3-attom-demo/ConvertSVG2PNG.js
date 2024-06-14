@@ -2,8 +2,6 @@ import { toPng } from 'html-to-image';
 import logoSVG from '../../layout/logo_letters_v2.svg';
 
 const convertSVGToPNG = (svgElement, setDataPNG, dataAddress) => {
-    const svgWidth = svgElement.getBoundingClientRect().width;
-    console.log("convertSVGToPNG svgElement width=", svgWidth);
 
     // Use html-to-image to convert the SVG element to a PNG
     if (!svgElement) {
@@ -37,10 +35,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
     const canvasWidth = png_width;
     const canvasHeight = image_target_height + header_height;
     
-    image.onload = () => {
-        console.log("image.height=", image.height);
-        console.log("image.width=", image.width);
-        
+    image.onload = () => {        
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
         
@@ -92,8 +87,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
         };
     };
 
-    image.src = dataUrl;
-    console.log("ConvertSVG2PNG: image width=", image.width);
+    image.src = dataUrl;    
 };
 
 export default convertSVGToPNG; 

@@ -198,10 +198,7 @@ const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {
                    
             }
         }
-        // Confirm width before passing to ConvertSVG2PNG
-        const svgWidth = tempContainer.firstChild.getBoundingClientRect().width;
-        console.log("SVG Width:", svgWidth);
-        
+                        
         ConvertSVG2PNG(tempContainer.firstChild, setDataPNG, dataAddress);
         
     }, [dataJson]);
