@@ -55,10 +55,10 @@ const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {
                             .domain([0, yearTotal])
                             .range([0, width-widthMortgage]); 
     
-
+    // Create a temporary container
+    const tempContainer = document.createElement('div');
     useEffect(() => {      
-         // Create a temporary container
-         const tempContainer = document.createElement('div');
+         
          tempContainer.style.position = 'absolute';
          tempContainer.style.top = '-9999px';
          document.body.appendChild(tempContainer);
@@ -198,6 +198,9 @@ const CreateDeedVisualPNG = ({dataJson, setDataPNG}) => {
                    
             }
         }
+        // Confirm width before passing to ConvertSVG2PNG
+        const svgWidth = tempContainer.firstChild.getBoundingClientRect().width;
+        console.log("SVG Width:", svgWidth);
         
         ConvertSVG2PNG(tempContainer.firstChild, setDataPNG, dataAddress);
         
