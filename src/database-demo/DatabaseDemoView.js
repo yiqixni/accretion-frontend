@@ -84,25 +84,28 @@ export default function DatabaseDemoView () {
                     <div className='row'> 
                         <CreateDeedVisualD3 dataJson={dataJSON} /> 
                     </div>
-                    <div className="share-save-edit"> 
-                        <div className="row">                            
-                            <Share shareLink={shareLink} linkPNG={linkPNG}/>
-                            <Save />
-                            <Edit />                                                                            
-                        </div>        
-                        <div className='row' style={{maxWidth:"650px", marginTop:"2svh"}}>
+                    <div className='row'>
+                        <div className="share-save-edit"> 
+                            <div className="row">                            
+                                <Share shareLink={shareLink} linkPNG={linkPNG}/>
+                                <Save />
+                                <Edit />                                                                            
+                            </div>                                                                
+                        </div> 
+
                         <Link to='/database/demo' style={{ textDecoration: 'none' }} onClick={scrollToTop}> 
                             <Button
                                 variant='outline-primary' 
-                                id='button-share'
+                                id='button-return'
+                                style={{maxWidth:"600px", marginTop:"2svh"}}
                             >
                                 Return to Search
                             </Button>      
-                        </Link>                                 
-                        </div>   
-                                
-                    </div> 
-                          
+                        </Link>    
+
+                    </div>          
+
+                        
                 </div>
                 
             )}
