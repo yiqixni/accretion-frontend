@@ -13,6 +13,8 @@ import Edit from "./share-save-edit/Edit.js";
 import Save from "./share-save-edit/Save.js";
 import DatabasePostPNG from './accretion-backend-api/DatabasePostPNG.js';
 
+import "./DatabaseDemo.css"
+
 export default function DatabaseDemo () {
     ////////// State Hooks //////////////
 

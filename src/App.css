@@ -45,6 +45,9 @@
   /* button attributes */
   --button-color: #00ED64; 
   --button-color-hover:  #00ED64;
+  --button-text-color: white;
+  /* --button-color: #061621; */
+  /* --button-color-hover:  #061621; */
   --button-border-radius: 5px;
   --button-border-radius-hover: 25px;
   /* width */

@@ -11,13 +11,13 @@ import RefreshJWTaccess from './RefreshJWTaccess';
 export default async function AuthJWT() {
     const { isLoggedIn, login } = useAuth(); 
 
-    if (isLoggedIn) {
-        return true; 
-    }
-    
     const jwt = JSON.parse(localStorage.getItem('jwt')); 
 
     useEffect(() => {
+        if (isLoggedIn) {
+            return true; 
+        }
+        
         if (jwt && jwt.access != "" && jwt.refresh != "") {
             console.log("JWT token is found in local storage ");
             CheckJWTaccess(jwt.access) 

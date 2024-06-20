@@ -2,14 +2,14 @@ import { toPng } from 'html-to-image';
 import logoSVG from '../../layout/logo_letters_v2.svg';
 
 const convertSVGToPNG = (svgElement, setDataPNG, dataAddress) => {
-    
+
     // Use html-to-image to convert the SVG element to a PNG
     if (!svgElement) {
         console.error('SVG element is not defined');
         return;
     }
     toPng(svgElement)
-        .then(function (pngDataUrl) {            
+        .then(function (pngDataUrl) {                        
             addLogoAndTextToImage(pngDataUrl, setDataPNG, dataAddress);
         })
         .catch(function (error) {
@@ -22,14 +22,20 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
     const ctx = canvas.getContext('2d');
     const image = new Image();    
     const aspectRatioTwitter = 1.91;
+    // define png size
     const png_width = 800;
-
-    image.onload = () => {
-        // Set canvas dimensions to the image dimensions
-        const header_height = png_width / aspectRatioTwitter - image.height; // define header space anchored to the deed graph  
-        const header_width = png_width; 
-        const canvasWidth = png_width;
-        const canvasHeight = image.height + header_height;
+    const png_height = png_width / aspectRatioTwitter; 
+    // define deed visual size
+    const image_target_width = 600; 
+    const image_target_height = 300; 
+    // define header size
+    const header_height = png_height - image_target_height; // define header space anchored to the deed graph  
+    const header_width = png_width; 
+    // Set canvas dimensions to the image dimensions                
+    const canvasWidth = png_width;
+    const canvasHeight = image_target_height + header_height;
+    
+    image.onload = () => {        
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
         
@@ -38,9 +44,11 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw the original deed visual onto the canvas
-        const imageX = canvas.width / 2 - image.width / 2; 
-        const imageY = header_height;
-        ctx.drawImage(image, imageX, imageY);
+        const imageX = canvas.width / 2 - image_target_width / 2; 
+        const imageY = header_height;        
+        ctx.drawImage(image, 0, 0, image.width, image.height, // define the current png size
+            imageX, imageY,                                   // define the starting png location
+            image_target_width, image_target_height);         // define the target png size
 
         // Draw the logo on top of the image
         const logo = new Image();
@@ -79,7 +87,7 @@ const addLogoAndTextToImage = (dataUrl, setDataPNG, dataAddress) => {
         };
     };
 
-    image.src = dataUrl;
+    image.src = dataUrl;    
 };
 
 export default convertSVGToPNG; 

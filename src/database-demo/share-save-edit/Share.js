@@ -81,7 +81,7 @@ export default function Share ({shareLink, linkPNG}) {
                             <ImageLoading imageUrl={linkPNG} altText={"static deed visual"}/>
                         </div>
 
-                        <div className="row">
+                        <div className="row" style={{marginTop:"5svh"}}>
                             <div className="column" style={{flex:"6"}}>
                                 <input                                     
                                     type="text" 

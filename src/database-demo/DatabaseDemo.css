@@ -174,15 +174,19 @@ rect:hover{
     padding: 0;
 }
 
-#button-share {    
+#button-share, #button-return {    
     background-color: var(--button-color);
     color: black; 
     border: solid black;
     border-radius: var(--button-border-radius);
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
-#button-share:hover {    
+
+
+
+
+#button-share:hover, #button-return:hover {    
     border-radius: var(--button-border-radius-hover);
 }
 
