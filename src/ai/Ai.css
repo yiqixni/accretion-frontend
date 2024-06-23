@@ -1,0 +1,7 @@
+.ai {
+    text-align: center;
+}
+
+.ai .row #chat-window { 
+    height: 90svh;
+}

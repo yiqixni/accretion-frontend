@@ -37,6 +37,14 @@ export default function Header() {
             </div>
 
             <div className='menu-section'>   
+                <Link to="/ai">
+                    <Button variant='outline-primary' id='dropdown-basic'>
+                        Intelligence 
+                    </Button>               
+                </Link>                                     
+            </div> 
+
+            <div className='menu-section'>   
                 <Link to="/marketplace">
                     <Button variant='outline-primary' id='dropdown-basic'>
                         Marketplace 
