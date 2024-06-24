@@ -31,11 +31,14 @@ const ChatComponent = () => {
     }
   };
 
-  const sendMessageToOpenAI = async (message, retries = 5) => {
+  const sendMessageToOpenAI = async (message, retries = 2) => {
     try {
       const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: message }],
+        messages: [
+            { role: "user", content: message }, 
+            { role: "system", content: "You are a real estate title abstractor and examiner." }, // specify the role of the chatbot
+        ],
       });
 
       return {

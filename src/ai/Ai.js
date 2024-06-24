@@ -1,4 +1,4 @@
-import ChatWindow from "./ChatWindow";
+import ChatbotComponent from "./react-chatbot-kit/ChatbotComponent";
 import "./Ai.css";
 
 
@@ -12,7 +12,7 @@ export default function Ai () {
             </div>
             <div className="row">
                 <div id="chat-window">
-                    <ChatWindow />
+                    <ChatbotComponent />
                 </div>
             </div>
         </div>
