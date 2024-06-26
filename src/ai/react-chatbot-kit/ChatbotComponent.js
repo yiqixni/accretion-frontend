@@ -9,20 +9,11 @@ import ActionProvider from './ActionProvider';
 
 const ChatbotComponent = () => {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <Chatbot
-    //       config={config}
-    //       messageParser={MessageParser}
-    //       actionProvider={ActionProvider}
-    //     />
-    //   </header>
-    // </div>
     <div style={{height:"100%"}}>
         <Chatbot
           config={config}
           messageParser={MessageParser}
-          actionProvider={ActionProvider}
+          actionProvider={ActionProvider}          
         />
     </div>
   );

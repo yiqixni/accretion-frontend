@@ -44,13 +44,13 @@ export default function Header() {
                 </Link>                                     
             </div> 
 
-            <div className='menu-section'>   
+            {/* <div className='menu-section'>   
                 <Link to="/marketplace">
                     <Button variant='outline-primary' id='dropdown-basic'>
                         Marketplace 
                     </Button>               
                 </Link>                                     
-            </div>            
+            </div>             */}
 
             <div className='menu-section'> 
                 <Link to="/company"> 
@@ -62,7 +62,7 @@ export default function Header() {
 
             <div className='contact-section'> 
                 <Link to="/contact-us"> 
-                    <Button variant='outline-primary' id='button-contact-us'> 
+                    <Button variant='outline-primary' id='button-contact-us' style={{fontSize:"16px"}}> 
                         Contact Us
                     </Button>
                 </Link>

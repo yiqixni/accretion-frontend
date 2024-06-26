@@ -1,6 +1,7 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import '../Ai.css';
 
+
 const botName = "Accretion Intelligence";
 
 const config = {
@@ -11,7 +12,7 @@ const config = {
       backgroundColor: "rgb(0,0,0,0.05)",
     },
     chatButton: {
-      backgroundColor: "#5ccc9d",
+      backgroundColor: "black",
     },
   },
 };

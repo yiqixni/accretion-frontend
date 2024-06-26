@@ -7,7 +7,7 @@ export default function Ai () {
         <div className="ai">
             <div className="row">
                 <div id="title">
-                    Artificial Intelligence  
+                    Accretion Intelligence  
                 </div>                
             </div>
             <div className="row">
