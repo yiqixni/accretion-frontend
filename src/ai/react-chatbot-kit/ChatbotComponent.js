@@ -1,6 +1,7 @@
 import React from 'react';
 import Chatbot from 'react-chatbot-kit';
 import './ChatbotStyle.css';
+// import '../Ai.css';
 // import 'react-chatbot-kit/build/main.css';
 
 import config from './chatbotConfig';
@@ -9,7 +10,7 @@ import ActionProvider from './ActionProvider';
 
 const ChatbotComponent = () => {
   return (
-    <div style={{height:"100%"}}>
+    <div id="chat-bot">
         <Chatbot
           config={config}
           messageParser={MessageParser}

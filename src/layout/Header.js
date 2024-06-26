@@ -6,6 +6,7 @@ import { IoIosCloseCircleOutline, IoIosArrowForward } from "react-icons/io";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './Header.css';
 import logo from './logo_letters_v2.svg'; 
+import scrollToChat from '../helper/scrollToChat';
 
 import { useAuth } from '../user-auth/AuthContext'; 
 
@@ -38,6 +39,7 @@ export default function Header() {
 
             <div className='menu-section'>   
                 <Link to="/ai">
+                    {/* <Button variant='outline-primary' id='dropdown-basic' onClick={scrollToChat}> */}
                     <Button variant='outline-primary' id='dropdown-basic'>
                         Intelligence 
                     </Button>               
@@ -84,10 +86,18 @@ export default function Header() {
                         </Link>   
                     </div>
 
-                    <div className='row-overlay'>
+                    {/* <div className='row-overlay'>
                         <Link to="/marketplace" onClick={toggleMenu}>                                                                                                        
                             <div className='option'> 
                                 Marketplace 
+                            </div>                                                                                                        
+                        </Link>
+                    </div>  */}
+
+                    <div className='row-overlay'>
+                        <Link to="/ai" onClick={toggleMenu}>                                                                                                        
+                            <div className='option'> 
+                                Intelligence 
                             </div>                                                                                                        
                         </Link>
                     </div> 
