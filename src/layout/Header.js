@@ -6,6 +6,7 @@ import { IoIosCloseCircleOutline, IoIosArrowForward } from "react-icons/io";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './Header.css';
 import logo from './logo_letters_v2.svg'; 
+import scrollToChat from '../helper/scrollToChat';
 
 import { useAuth } from '../user-auth/AuthContext'; 
 
@@ -37,12 +38,21 @@ export default function Header() {
             </div>
 
             <div className='menu-section'>   
+                <Link to="/ai">
+                    {/* <Button variant='outline-primary' id='dropdown-basic' onClick={scrollToChat}> */}
+                    <Button variant='outline-primary' id='dropdown-basic'>
+                        Intelligence 
+                    </Button>               
+                </Link>                                     
+            </div> 
+
+            {/* <div className='menu-section'>   
                 <Link to="/marketplace">
                     <Button variant='outline-primary' id='dropdown-basic'>
                         Marketplace 
                     </Button>               
                 </Link>                                     
-            </div>            
+            </div>             */}
 
             <div className='menu-section'> 
                 <Link to="/company"> 
@@ -54,7 +64,7 @@ export default function Header() {
 
             <div className='contact-section'> 
                 <Link to="/contact-us"> 
-                    <Button variant='outline-primary' id='button-contact-us'> 
+                    <Button variant='outline-primary' id='button-contact-us' style={{fontSize:"16px"}}> 
                         Contact Us
                     </Button>
                 </Link>
@@ -76,10 +86,18 @@ export default function Header() {
                         </Link>   
                     </div>
 
-                    <div className='row-overlay'>
+                    {/* <div className='row-overlay'>
                         <Link to="/marketplace" onClick={toggleMenu}>                                                                                                        
                             <div className='option'> 
                                 Marketplace 
+                            </div>                                                                                                        
+                        </Link>
+                    </div>  */}
+
+                    <div className='row-overlay'>
+                        <Link to="/ai" onClick={toggleMenu}>                                                                                                        
+                            <div className='option'> 
+                                Intelligence 
                             </div>                                                                                                        
                         </Link>
                     </div> 
