@@ -11,6 +11,7 @@ import CreateDeedVisualPNG from './d3-attom-demo/CreateDeedVisualPNG.js';
 import Share from "./share-save-edit/Share.js";
 import Edit from "./share-save-edit/Edit.js";
 import Save from "./share-save-edit/Save.js";
+import GenerateTitleReport from './share-save-edit/GenerateTitleReport.js';
 import DatabasePostPNG from './accretion-backend-api/DatabasePostPNG.js';
 
 import "./DatabaseDemo.css"
@@ -92,12 +93,20 @@ export default function DatabaseDemo () {
                             <Share shareLink={shareLink} linkPNG={linkPNG} />
                             <Save />
                             <Edit />                                                                            
-                        </div>                    
+                        </div>     
+                        <div className='row'> 
+                            <GenerateTitleReport />
+                        </div>               
                     </div> 
+
+                    
+
                 </div>
             )}
             {(fetchStatus == false) && (
-                <Error/>
+                <div> 
+                    <Error/> 
+                </div>
             )}
                   
         </div>

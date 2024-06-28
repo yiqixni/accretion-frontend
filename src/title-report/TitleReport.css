@@ -1,0 +1,31 @@
+.title-report {
+    text-align: center;
+}
+
+.title-report #title{
+    font-size: 40px;
+}
+
+.title-report #small-title{
+    font-size: 15px;
+    font-weight: bolder;    
+}
+
+.title-report .row {
+    max-width: 1200px;
+}
+
+.client-info, .legal-description, .schedule-a, .schedule-b {
+    text-align: left;
+}
+
+/* CLIENT INFO */
+
+
+.client-info .col-key{
+    flex: 1;
+}
+
+.client-info .col-val{
+    flex: 4;
+}

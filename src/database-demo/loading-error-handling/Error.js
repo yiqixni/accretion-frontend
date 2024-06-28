@@ -1,6 +1,7 @@
 import Lottie from 'react-lottie';
 import NotFound from "./animation-lotttie/not-found.json";
 import ContactUsOverlay from '../../contact-us/ContactUsOverlay';
+import GenerateTitleReport from '../share-save-edit/GenerateTitleReport';
 
 const animationOptions = {
     loop: true,
@@ -22,7 +23,8 @@ export default function Error () {
             <div style={{marginBottom:"2svh"}}> 
                 Contact Us Accretion Support Team 
             </div>
-            <ContactUsOverlay/>
+            <ContactUsOverlay/>            
+            <GenerateTitleReport />            
         </div>
     )
 }

@@ -15,6 +15,8 @@ import Marketplace from './markeplace/Marketplace.js';
 import DatabaseDemo from './database-demo/DatabaseDemo.js';
 import DatabaseDemoView from './database-demo/DatabaseDemoView.js';
 import Ai from './ai/Ai.js';
+import TitleReport from './title-report/TitleReport.js';
+
 import ContactUs from './contact-us/ContactUs.js';
 import Leadership from './company/Leadership.js';
 import CalendlyComponent from './contact-us/CalendlyComponent.js';
@@ -46,6 +48,7 @@ const router = createBrowserRouter(
       <Route path="database/demo" element={<DatabaseDemo/>} /> 
       <Route path="database/demo/view" element={<DatabaseDemoView/>} /> 
       <Route path="ai" element={<Ai/>} /> 
+      <Route path="title-report" element={<TitleReport/>} /> 
       <Route path="marketplace" element={<Marketplace/>} /> 
       <Route path="contact-us" element={<ContactUs/>} /> 
       <Route path="leadership" element={<Leadership/>} /> 

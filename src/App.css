@@ -69,4 +69,8 @@
 
 .slider, .slider-logo, #slider-logo-id {
   border: solid black;
+}
+
+.col-key, .col-val {
+  border: solid black;
 } */
